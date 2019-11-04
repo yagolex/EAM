@@ -5,6 +5,7 @@ import { ICourseItem } from 'src/app/core/model/i-course-item';
 
 @Injectable()
 export class Course implements ICourseItem {
+    id: number;
     title: string;
     description: string;
     creationDate: Date;
@@ -14,13 +15,14 @@ export class Course implements ICourseItem {
         this.creationDate=new Date();
     }
 
-    static GetCourse(datepipe: DatePipe, title: string, description: string, startDate: Date, duration: DurationTime){
+    static GetCourse(datepipe: DatePipe, title: string, description: string, startDate: Date, duration: DurationTime, id: number){
         
         let c1 = new Course (datepipe);
         c1.title = title;
         c1.description = description;
         c1.creationDate = startDate;
         c1.duration = duration;
+        c1.id = id;
 
         return c1;
     }

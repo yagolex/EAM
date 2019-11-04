@@ -10,16 +10,21 @@ import { CourseService } from './model/course-service';
 import { DatePipe } from '@angular/common';
 import { UserService } from './model/user-service';
 
+import { FormsModule } from '@angular/forms';
+import { LoggerService } from './model/logger-service';
+
 
 @NgModule({
   declarations: [CourseListComponent, HeaderComponent, FooterComponent, CourseItemComponent, BreadcrumbsComponent, SearchSectionComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   providers: [
     CourseService,
     DatePipe,
-    UserService
+    UserService,
+    LoggerService
   ],
   exports: [
     CourseListComponent, HeaderComponent, FooterComponent, CourseItemComponent, BreadcrumbsComponent, SearchSectionComponent
