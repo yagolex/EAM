@@ -15,7 +15,14 @@ import { LoggerService } from './model/logger-service';
 
 
 @NgModule({
-  declarations: [CourseListComponent, HeaderComponent, FooterComponent, CourseItemComponent, BreadcrumbsComponent, SearchSectionComponent],
+  declarations: [
+    CourseListComponent, 
+    HeaderComponent, 
+    FooterComponent, 
+    CourseItemComponent, 
+    BreadcrumbsComponent, 
+    SearchSectionComponent
+  ],
   imports: [
     CommonModule,
     FormsModule

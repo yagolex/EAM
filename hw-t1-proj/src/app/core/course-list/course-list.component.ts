@@ -10,62 +10,62 @@ import { LoggerService } from '../model/logger-service';
 })
 export class CourseListComponent implements OnInit {
 
-  courseList : ICourseItem [];
+  public courseList : ICourseItem [];
 
   constructor(private courseService:CourseService, private logger: LoggerService) { 
   }
 
-  deleteCourseItem(id: number) : void{
+  public deleteCourseItem(id: number) : void{
     this.logger.log(`List component - deleteCourseItem - with id = ${id}`);
     
   }
 
-  editCourseItem(id: number) : void{
+  public editCourseItem(id: number) : void{
     this.logger.log(`List component - editCourseItem with id = ${id}`);
   }
 
-  loadMoreCourseItems(id: number) : void{
+  public loadMoreCourseItems() : void{
     this.logger.log(`List component - loadMoreCourseItems`);
   }
 
 
-
-
-  logIt(msg: string) {
-    this.logger.log(`${msg}`);
-  }
-
   ngOnInit() {
     this.courseList = this.courseService.getCourseList();
-    this.logIt(this.ngOnInit.name);
+    //this.logIt(this.ngOnInit.name);
   }
 
-  ngOnChanges() {
-    this.logIt(this.ngOnChanges.name);
-  }
 
-  ngDoCheck() {
-    this.logIt(this.ngDoCheck.name);
-  }
+  // logIt(msg: string) {
+  //   this.logger.log(`${msg}`);
+  // }
+  
 
-  ngAfterContentInit() {
-    this.logIt(this.ngAfterContentInit.name);
-  }
+  // ngOnChanges() {
+  //   this.logIt(this.ngOnChanges.name);
+  // }
 
-  ngAfterContentChecked() {
-    this.logIt(this.ngAfterContentChecked.name);
-  }
+  // ngDoCheck() {
+  //   this.logIt(this.ngDoCheck.name);
+  // }
 
-  ngAfterViewInit() {
-    this.logIt(this.ngAfterViewInit.name);
-  }
+  // ngAfterContentInit() {
+  //   this.logIt(this.ngAfterContentInit.name);
+  // }
 
-  ngAfterViewChecked() {
-    this.logIt(this.ngAfterViewChecked.name);
-  }
+  // ngAfterContentChecked() {
+  //   this.logIt(this.ngAfterContentChecked.name);
+  // }
 
-  ngOnDestroy() {
-    this.logIt(this.ngOnDestroy.name);
-  }
+  // ngAfterViewInit() {
+  //   this.logIt(this.ngAfterViewInit.name);
+  // }
+
+  // ngAfterViewChecked() {
+  //   this.logIt(this.ngAfterViewChecked.name);
+  // }
+
+  // ngOnDestroy() {
+  //   this.logIt(this.ngOnDestroy.name);
+  // }
 
 }
