@@ -6,17 +6,15 @@ import { Component, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angu
   styleUrls: ['./search-section.component.css']
 })
 export class SearchSectionComponent {
+  constructor() {}
 
-  constructor() { }
+  public searchCriteria: string = '';
 
-  public searchCriteria: string = "";
-
-  public search(){
+  public search() {
     console.log(this.searchCriteria);
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
     console.log('SearchSectionComponent', changes);
   }
-
 }

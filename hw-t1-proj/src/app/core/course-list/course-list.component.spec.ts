@@ -1,27 +1,27 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { CourseListComponent } from "./course-list.component";
-import { FormsModule } from "@angular/forms";
-import { SearchSectionComponent } from "../search-section/search-section.component";
-import { CourseItemComponent } from "../course-item/course-item.component";
-import { CourseService } from "../model/course-service";
-import { DatePipe } from "@angular/common";
-import { LoggerService } from "../model/logger-service";
-import { By } from "@angular/platform-browser";
-import { Course } from "../model/course";
-import { DurationTime } from "../model/duration-time";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CourseListComponent } from './course-list.component';
+import { FormsModule } from '@angular/forms';
+import { SearchSectionComponent } from '../search-section/search-section.component';
+import { CourseItemComponent } from '../course-item/course-item.component';
+import { CourseService } from '../model/course-service';
+import { DatePipe } from '@angular/common';
+import { LoggerService } from '../model/logger-service';
+import { By } from '@angular/platform-browser';
+import { Course } from '../model/course';
+import { DurationTime } from '../model/duration-time';
 
-describe("#CourseListComponent", () => {
+describe('#CourseListComponent', () => {
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
-  let pipe = new DatePipe("en");
+  const pipe = new DatePipe('en');
 
   let courseService: CourseService;
-  let courseServiceStub: Partial<CourseService> = {
+  const courseServiceStub: Partial<CourseService> = {
     getCourseList: () => [
       Course.GetCourse(
         pipe,
-        "Name",
-        "Description",
+        'Name',
+        'Description',
         new Date(2019, 10, 27),
         new DurationTime(541),
         1
@@ -31,17 +31,9 @@ describe("#CourseListComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CourseListComponent,
-        SearchSectionComponent,
-        CourseItemComponent
-      ],
+      declarations: [CourseListComponent, SearchSectionComponent, CourseItemComponent],
       imports: [FormsModule],
-      providers: [
-        DatePipe,
-        LoggerService,
-        { provide: CourseService, useValue: courseServiceStub }
-      ]
+      providers: [DatePipe, LoggerService, { provide: CourseService, useValue: courseServiceStub }]
     }).compileComponents();
   }));
 
@@ -52,42 +44,42 @@ describe("#CourseListComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create an instance", () => {
+  it('should create an instance', () => {
     expect(component).toBeTruthy();
   });
 
-  it("should react on loadMoreCourseItems click", () => {
-    let spy = spyOn(component, "loadMoreCourseItems");
-    let el = fixture.debugElement.query(By.css("#loadMoreButton"));
-    el.triggerEventHandler("click", null);
+  it('should react on loadMoreCourseItems click', () => {
+    const spy = spyOn(component, 'loadMoreCourseItems');
+    const el = fixture.debugElement.query(By.css('#load-more-button'));
+    el.triggerEventHandler('click', null);
     fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
   });
 
-  it("should get deleteCourse event from child ", () => {
-    const methodSpy = spyOn(component, "deleteCourseItem");
-    let child = fixture.debugElement.query(By.directive(CourseItemComponent));
-    child.triggerEventHandler("onDelete", 1);
+  it('should get deleteCourse event from child ', () => {
+    const methodSpy = spyOn(component, 'deleteCourseItem');
+    const child = fixture.debugElement.query(By.directive(CourseItemComponent));
+    child.triggerEventHandler('deleteCourseItemEvent', 1);
     fixture.detectChanges();
     expect(methodSpy).toHaveBeenCalled();
   });
 
-  it("should get editCourseItem event from child ", () => {
-    const methodSpy = spyOn(component, "editCourseItem");
-    let child = fixture.debugElement.query(By.directive(CourseItemComponent));
-    child.triggerEventHandler("onEdit", 1);
+  it('should get editCourseItem event from child ', () => {
+    const methodSpy = spyOn(component, 'editCourseItem');
+    const child = fixture.debugElement.query(By.directive(CourseItemComponent));
+    child.triggerEventHandler('editCourseItemEvent', 1);
     fixture.detectChanges();
     expect(methodSpy).toHaveBeenCalled();
   });
 
-  it("should call courseService", () => {
-    const getDataSpy = spyOn(courseService, "getCourseList");
+  it('should call courseService', () => {
+    const getDataSpy = spyOn(courseService, 'getCourseList');
     component.ngOnInit();
     expect(getDataSpy).toHaveBeenCalled();
     expect(component.courseList).toEqual(courseService.getCourseList());
   });
 
-  it("should have courseList initialised ", () => {
+  it('should have courseList initialised ', () => {
     component.ngOnInit();
     expect(component.courseList).toEqual(courseService.getCourseList());
   });
