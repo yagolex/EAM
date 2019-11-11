@@ -7,20 +7,10 @@ import { CoreModule } from './core/core.module';
 
 import { FormsModule } from '@angular/forms';
 
-
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CoreModule,
-    FormsModule
-  ],
-  providers: [
-
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, CoreModule, FormsModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

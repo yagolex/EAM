@@ -16,10 +16,7 @@ import { LoggerService } from './core/model/logger-service';
 describe('#AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        FormsModule
-      ],
+      imports: [RouterTestingModule, FormsModule],
       declarations: [
         AppComponent,
         HeaderComponent,
@@ -29,12 +26,7 @@ describe('#AppComponent', () => {
         SearchSectionComponent,
         CourseItemComponent
       ],
-      providers: [
-        CourseService,
-        DatePipe,
-        UserService,
-        LoggerService
-      ],
+      providers: [CourseService, DatePipe, UserService, LoggerService]
     }).compileComponents();
   }));
 

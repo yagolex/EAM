@@ -8,13 +8,11 @@ import { UserService } from '../model/user-service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  currentUser: IUser;
 
-  currentUser : IUser;
-
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.currentUser = this.userService.getUserInfo();
   }
-
 }

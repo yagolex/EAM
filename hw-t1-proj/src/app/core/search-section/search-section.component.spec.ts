@@ -9,10 +9,9 @@ describe('SearchSectionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchSectionComponent ],
-      imports: [ FormsModule ]
-    })
-    .compileComponents();
+      declarations: [SearchSectionComponent],
+      imports: [FormsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

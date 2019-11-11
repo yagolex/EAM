@@ -9,63 +9,23 @@ import { LoggerService } from '../model/logger-service';
   styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit {
+  public courseList: ICourseItem[];
 
-  public courseList : ICourseItem [];
+  constructor(private courseService: CourseService, private logger: LoggerService) {}
 
-  constructor(private courseService:CourseService, private logger: LoggerService) { 
-  }
-
-  public deleteCourseItem(id: number) : void{
+  public deleteCourseItem(id: number): void {
     this.logger.log(`List component - deleteCourseItem - with id = ${id}`);
-    
   }
 
-  public editCourseItem(id: number) : void{
+  public editCourseItem(id: number): void {
     this.logger.log(`List component - editCourseItem with id = ${id}`);
   }
 
-  public loadMoreCourseItems() : void{
+  public loadMoreCourseItems(): void {
     this.logger.log(`List component - loadMoreCourseItems`);
   }
 
-
   ngOnInit() {
     this.courseList = this.courseService.getCourseList();
-    //this.logIt(this.ngOnInit.name);
   }
-
-
-  // logIt(msg: string) {
-  //   this.logger.log(`${msg}`);
-  // }
-  
-
-  // ngOnChanges() {
-  //   this.logIt(this.ngOnChanges.name);
-  // }
-
-  // ngDoCheck() {
-  //   this.logIt(this.ngDoCheck.name);
-  // }
-
-  // ngAfterContentInit() {
-  //   this.logIt(this.ngAfterContentInit.name);
-  // }
-
-  // ngAfterContentChecked() {
-  //   this.logIt(this.ngAfterContentChecked.name);
-  // }
-
-  // ngAfterViewInit() {
-  //   this.logIt(this.ngAfterViewInit.name);
-  // }
-
-  // ngAfterViewChecked() {
-  //   this.logIt(this.ngAfterViewChecked.name);
-  // }
-
-  // ngOnDestroy() {
-  //   this.logIt(this.ngOnDestroy.name);
-  // }
-
 }

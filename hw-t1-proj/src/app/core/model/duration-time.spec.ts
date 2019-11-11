@@ -7,7 +7,7 @@ describe('#DurationTime', () => {
 });
 
 describe('#DurationTime', () => {
-  it('should give duration', () => {    
+  it('should give duration', () => {
     let duration = new DurationTime(91);
     expect(duration.getDuration()).toEqual('1h 31min');
   });
