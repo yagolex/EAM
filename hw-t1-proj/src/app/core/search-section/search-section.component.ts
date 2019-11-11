@@ -3,15 +3,11 @@ import { Component, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angu
 @Component({
   selector: 'app-search-section',
   templateUrl: './search-section.component.html',
-  styleUrls: ['./search-section.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default
+  styleUrls: ['./search-section.component.css']
 })
-export class SearchSectionComponent implements OnInit {
+export class SearchSectionComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   public searchCriteria: string = "";
 

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import { FormsModule } from '@angular/forms';
+import { UserService } from '../model/user-service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,7 +10,9 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [ HeaderComponent ],
+      imports: [ FormsModule ],
+      providers: [ UserService ]
     })
     .compileComponents();
   }));
