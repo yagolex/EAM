@@ -12,6 +12,10 @@ import { UserService } from './model/user-service';
 
 import { FormsModule } from '@angular/forms';
 import { LoggerService } from './model/logger-service';
+import { CourseItemBorderDirective } from './course-item-border.directive';
+import { GetDurationPipe } from './get-duration.pipe';
+import { OrderByPipe } from './order-by.pipe';
+import { FilterByPipe } from './filter-by.pipe';
 
 @NgModule({
   declarations: [
@@ -20,10 +24,14 @@ import { LoggerService } from './model/logger-service';
     FooterComponent,
     CourseItemComponent,
     BreadcrumbsComponent,
-    SearchSectionComponent
+    SearchSectionComponent,
+    CourseItemBorderDirective,
+    GetDurationPipe,
+    OrderByPipe,
+    FilterByPipe
   ],
   imports: [CommonModule, FormsModule],
-  providers: [CourseService, DatePipe, UserService, LoggerService],
+  providers: [CourseService, DatePipe, UserService, LoggerService, FilterByPipe],
   exports: [
     CourseListComponent,
     HeaderComponent,

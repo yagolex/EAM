@@ -1,9 +1,12 @@
 <div class="px-5 bg-light pb-5">
-  <app-search-section></app-search-section>
+  <app-search-section
+    *ngIf="hasItems()"
+    (searchCourseItemEvent)="filterCourseItems($event)"
+  ></app-search-section>
 
-  <div class="list-group">
+  <div class="list-group" *ngIf="hasItems()">
     <app-course-item
-      *ngFor="let singleCourse of courseList"
+      *ngFor="let singleCourse of courseList | orderBy: 'creationDate'"
       [courseItem]="singleCourse"
       (deleteCourseItemEvent)="deleteCourseItem($event)"
       (editCourseItemEvent)="editCourseItem($event)"
@@ -16,7 +19,11 @@
     href="#"
     class="list-group-item mt-2 text-center my-2"
     (click)="loadMoreCourseItems()"
+    *ngIf="hasItems()"
   >
     Load more...
+  </a>
+  <a href="#" class="list-group-item mt-2 text-center my-2" *ngIf="!hasItems()">
+    NO DATA. FEEL FREE TO ADD NEW COURSE.
   </a>
 </div>

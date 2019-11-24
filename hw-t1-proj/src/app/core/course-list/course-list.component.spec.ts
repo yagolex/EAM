@@ -4,36 +4,24 @@ import { FormsModule } from '@angular/forms';
 import { SearchSectionComponent } from '../search-section/search-section.component';
 import { CourseItemComponent } from '../course-item/course-item.component';
 import { CourseService } from '../model/course-service';
-import { DatePipe } from '@angular/common';
 import { LoggerService } from '../model/logger-service';
 import { By } from '@angular/platform-browser';
 import { Course } from '../model/course';
-import { DurationTime } from '../model/duration-time';
 
 describe('#CourseListComponent', () => {
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
-  const pipe = new DatePipe('en');
 
   let courseService: CourseService;
   const courseServiceStub: Partial<CourseService> = {
-    getCourseList: () => [
-      Course.GetCourse(
-        pipe,
-        'Name',
-        'Description',
-        new Date(2019, 10, 27),
-        new DurationTime(541),
-        1
-      )
-    ]
+    getCourseList: () => [Course.GetCourse('Name', 'Description', new Date(2019, 10, 27), 541, 1)]
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseListComponent, SearchSectionComponent, CourseItemComponent],
       imports: [FormsModule],
-      providers: [DatePipe, LoggerService, { provide: CourseService, useValue: courseServiceStub }]
+      providers: [LoggerService, { provide: CourseService, useValue: courseServiceStub }]
     }).compileComponents();
   }));
 

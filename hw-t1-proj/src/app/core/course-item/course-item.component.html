@@ -1,7 +1,26 @@
-<a href="#" class="list-group-item list-group-item-action flex-column align-items-start my-2">
+<style>
+  .myBag {
+    background-color: yellow;
+  }
+</style>
+<a
+  href="#"
+  class="list-group-item list-group-item-action flex-column align-items-start my-2"
+  [ngClass]="[courseItem.topRated ? 'myBag' : 'NA']"
+  appCourseItemBorder
+  cDate="{{ courseItem.creationDate }}"
+>
   <div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1">{{ courseItem.title }}</h5>
-    <small class="text-muted">{{ courseItem.getDuration() }} {{ courseItem.getDate() }}</small>
+    <h5 class="mb-1">
+      {{ courseItem.title | uppercase }}
+      <i *ngIf="courseItem.topRated" class="material-icons">star_border</i>
+    </h5>
+    <small class="text-muted">
+      <i class="material-icons">access_time</i>
+      {{ courseItem.durationMinutes | getDuration }}
+      <i class="material-icons">calendar_today</i>
+      {{ courseItem.creationDate | date: 'dd MMM, yyyy' }}</small
+    >
   </div>
   <p class="mb-1">
     {{ courseItem.description }}
