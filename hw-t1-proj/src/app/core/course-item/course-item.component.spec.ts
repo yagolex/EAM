@@ -4,6 +4,8 @@ import { CourseItemComponent } from './course-item.component';
 import { LoggerService } from '../model/logger-service';
 import { Course } from '../model/course';
 import { By } from '@angular/platform-browser';
+import { CourseItemBorderDirective } from '../course-item-border.directive';
+import { GetDurationPipe } from '../get-duration.pipe';
 
 describe('#CourseItemComponent', () => {
   let component: CourseItemComponent;
@@ -11,7 +13,7 @@ describe('#CourseItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseItemComponent],
+      declarations: [CourseItemComponent, CourseItemBorderDirective, GetDurationPipe],
       providers: [LoggerService]
     }).compileComponents();
   }));
