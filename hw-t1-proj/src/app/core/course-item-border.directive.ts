@@ -5,17 +5,17 @@ import { LoggerService } from './model/logger-service';
   selector: '[appCourseItemBorder]'
 })
 export class CourseItemBorderDirective implements OnInit {
-  @Input() cDate: Date;
+  @Input() courseDate: Date;
 
   constructor(private elementRef: ElementRef, private logger: LoggerService) {}
 
   ngOnInit() {
-    if (this.cDate) {
-      this.setBrdColor(this.cDate);
+    if (this.courseDate) {
+      this.setBorderColor(this.courseDate);
     }
   }
 
-  setBrdColor(creationDate: Date) {
+  setBorderColor(creationDate: Date) {
     const currentDate: Date = new Date();
     const ftDaysBack: Date = new Date();
     ftDaysBack.setDate(ftDaysBack.getDate() - 14); // set date for 14 days back
