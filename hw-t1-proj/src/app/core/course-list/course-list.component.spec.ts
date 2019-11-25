@@ -7,6 +7,10 @@ import { CourseService } from '../model/course-service';
 import { LoggerService } from '../model/logger-service';
 import { By } from '@angular/platform-browser';
 import { Course } from '../model/course';
+import { OrderByPipe } from '../order-by.pipe';
+import { FilterByPipe } from '../filter-by.pipe';
+import { CourseItemBorderDirective } from '../course-item-border.directive';
+import { GetDurationPipe } from '../get-duration.pipe';
 
 describe('#CourseListComponent', () => {
   let component: CourseListComponent;
@@ -19,9 +23,21 @@ describe('#CourseListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseListComponent, SearchSectionComponent, CourseItemComponent],
+      declarations: [
+        CourseListComponent,
+        SearchSectionComponent,
+        CourseItemComponent,
+        OrderByPipe,
+        FilterByPipe,
+        CourseItemBorderDirective,
+        GetDurationPipe
+      ],
       imports: [FormsModule],
-      providers: [LoggerService, { provide: CourseService, useValue: courseServiceStub }]
+      providers: [
+        FilterByPipe,
+        LoggerService,
+        { provide: CourseService, useValue: courseServiceStub }
+      ]
     }).compileComponents();
   }));
 

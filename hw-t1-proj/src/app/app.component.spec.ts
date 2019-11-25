@@ -12,6 +12,10 @@ import { CourseService } from './core/model/course-service';
 import { DatePipe } from '@angular/common';
 import { UserService } from './core/model/user-service';
 import { LoggerService } from './core/model/logger-service';
+import { OrderByPipe } from './core/order-by.pipe';
+import { CourseItemBorderDirective } from './core/course-item-border.directive';
+import { GetDurationPipe } from './core/get-duration.pipe';
+import { FilterByPipe } from './core/filter-by.pipe';
 
 describe('#AppComponent', () => {
   beforeEach(async(() => {
@@ -24,9 +28,12 @@ describe('#AppComponent', () => {
         CourseListComponent,
         FooterComponent,
         SearchSectionComponent,
-        CourseItemComponent
+        CourseItemComponent,
+        OrderByPipe,
+        CourseItemBorderDirective,
+        GetDurationPipe
       ],
-      providers: [CourseService, DatePipe, UserService, LoggerService]
+      providers: [CourseService, DatePipe, UserService, LoggerService, FilterByPipe]
     }).compileComponents();
   }));
 
