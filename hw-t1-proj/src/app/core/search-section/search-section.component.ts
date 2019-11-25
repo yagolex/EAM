@@ -1,20 +1,24 @@
-import { Component, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { LoggerService } from '../model/logger-service';
 
 @Component({
   selector: 'app-search-section',
   templateUrl: './search-section.component.html',
   styleUrls: ['./search-section.component.css']
 })
-export class SearchSectionComponent {
-  constructor() {}
-
+export class SearchSectionComponent implements OnChanges {
+  @Output() searchCourseItemEvent: EventEmitter<string> = new EventEmitter<string>();
+  constructor(private logger: LoggerService) {}
   public searchCriteria: string = '';
 
   public search() {
-    console.log(this.searchCriteria);
+    this.logger.log(
+      `SearchSectionComponent - searchCourseItemEvent - searchCriteria - ${this.searchCriteria}`
+    );
+    this.searchCourseItemEvent.emit(this.searchCriteria);
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    console.log('SearchSectionComponent', changes);
+    this.logger.log(`SearchSectionComponent - ngOnChanges - ${changes}`);
   }
 }

@@ -1,5 +1,3 @@
-import { DatePipe } from '@angular/common';
-import { DurationTime } from './duration-time';
 import { Injectable } from '@angular/core';
 import { ICourseItem } from 'src/app/core/model/i-course-item';
 
@@ -9,35 +7,30 @@ export class Course implements ICourseItem {
   title: string;
   description: string;
   creationDate: Date;
-  duration: DurationTime;
+  durationMinutes: number;
+  topRated: boolean;
 
-  constructor(public datepipe: DatePipe) {
+  constructor() {
     this.creationDate = new Date();
+    this.topRated = false;
   }
 
   static GetCourse(
-    datepipe: DatePipe,
     title: string,
     description: string,
     startDate: Date,
-    duration: DurationTime,
-    id: number
+    durationMinutes: number,
+    id: number,
+    topRated: boolean = false
   ) {
-    let c1 = new Course(datepipe);
+    const c1 = new Course();
     c1.title = title;
     c1.description = description;
     c1.creationDate = startDate;
-    c1.duration = duration;
+    c1.durationMinutes = durationMinutes;
     c1.id = id;
+    c1.topRated = topRated;
 
     return c1;
-  }
-
-  getDate(): string {
-    return this.datepipe.transform(this.creationDate, 'dd MMM, yyyy');
-  }
-
-  getDuration(): string {
-    return this.duration.getDuration();
   }
 }
