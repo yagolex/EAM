@@ -16,6 +16,8 @@ import { CourseItemBorderDirective } from './course-item-border.directive';
 import { GetDurationPipe } from './get-duration.pipe';
 import { OrderByPipe } from './order-by.pipe';
 import { FilterByPipe } from './filter-by.pipe';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AuthenticationService } from './model/auth-service.service';
 
 @NgModule({
   declarations: [
@@ -28,17 +30,26 @@ import { FilterByPipe } from './filter-by.pipe';
     CourseItemBorderDirective,
     GetDurationPipe,
     OrderByPipe,
-    FilterByPipe
+    FilterByPipe,
+    LoginPageComponent
   ],
   imports: [CommonModule, FormsModule],
-  providers: [CourseService, DatePipe, UserService, LoggerService, FilterByPipe],
+  providers: [
+    CourseService,
+    DatePipe,
+    UserService,
+    LoggerService,
+    FilterByPipe,
+    AuthenticationService
+  ],
   exports: [
     CourseListComponent,
     HeaderComponent,
     FooterComponent,
     CourseItemComponent,
     BreadcrumbsComponent,
-    SearchSectionComponent
+    SearchSectionComponent,
+    LoginPageComponent
   ]
 })
 export class CoreModule {}

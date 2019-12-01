@@ -19,7 +19,12 @@ export class CourseListComponent implements OnInit {
   ) {}
 
   public deleteCourseItem(id: number): void {
-    this.logger.log(`List component - deleteCourseItem - with id = ${id}`);
+    if (confirm('are you sure to delete course with id = ' + id)) {
+      // this.logger.log(`List component - deleteCourseItem - with id = ${id}`);
+      if (this.courseService.DeleteCourse(id)) {
+        this.courseList = this.courseService.GetCourseList();
+      }
+    }
   }
 
   public editCourseItem(id: number): void {
@@ -31,12 +36,12 @@ export class CourseListComponent implements OnInit {
   }
 
   public filterCourseItems(searchCriteria: string): void {
-    this.logger.log(`List component - filterCourseItems - ${searchCriteria}`);
-    this.courseList = this.filter.transform(this.courseService.getCourseList(), searchCriteria);
+    // this.logger.log(`List component - filterCourseItems - ${searchCriteria}`);
+    this.courseList = this.filter.transform(this.courseService.GetCourseList(), searchCriteria);
   }
 
   ngOnInit() {
-    this.courseList = this.courseService.getCourseList();
+    this.courseList = this.courseService.GetCourseList();
   }
 
   public hasItems(): boolean {

@@ -18,7 +18,9 @@ describe('#CourseListComponent', () => {
 
   let courseService: CourseService;
   const courseServiceStub: Partial<CourseService> = {
-    getCourseList: () => [Course.GetCourse('Name', 'Description', new Date(2019, 10, 27), 541, 1)]
+    GetCourseList: () => [
+      CourseService.GetNewCourse('Name', 'Description', new Date(2019, 10, 27), 541, 1)
+    ]
   };
 
   beforeEach(async(() => {
@@ -77,14 +79,14 @@ describe('#CourseListComponent', () => {
   });
 
   it('should call courseService', () => {
-    const getDataSpy = spyOn(courseService, 'getCourseList');
+    const getDataSpy = spyOn(courseService, 'GetCourseList');
     component.ngOnInit();
     expect(getDataSpy).toHaveBeenCalled();
-    expect(component.courseList).toEqual(courseService.getCourseList());
+    expect(component.courseList).toEqual(courseService.GetCourseList());
   });
 
   it('should have courseList initialised ', () => {
     component.ngOnInit();
-    expect(component.courseList).toEqual(courseService.getCourseList());
+    expect(component.courseList).toEqual(courseService.GetCourseList());
   });
 });
