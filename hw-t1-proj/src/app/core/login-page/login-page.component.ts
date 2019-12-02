@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthenticationService } from '../model/auth-service.service';
 import { LoggerService } from '../model/logger-service';
 
@@ -15,7 +15,7 @@ export class LoginPageComponent {
 
   signIn() {
     this.logger.log('signInClick');
-    if (this.authService.Login(this.login, this.password)) {
+    if (this.authService.login(this.login, this.password)) {
       this.logger.log('login sucess');
     } else {
       this.logger.log('login failure');

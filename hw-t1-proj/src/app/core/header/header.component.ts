@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../model/i-user';
+import { User } from '../model/user';
 import { UserService } from '../model/user-service';
 import { AuthenticationService } from '../model/auth-service.service';
-import { LoggerService } from '../model/logger-service';
 
 @Component({
   selector: 'app-header',
@@ -10,23 +9,17 @@ import { LoggerService } from '../model/logger-service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  currentUser: IUser;
+  currentUser: User;
 
-  constructor(
-    private authService: AuthenticationService,
-    private userService: UserService,
-    private logger: LoggerService
-  ) {}
+  constructor(private authService: AuthenticationService, private userService: UserService) {}
 
   ngOnInit() {
-    if (this.authService.IsAthenticated(this.authService.GetUserInfo())) {
+    if (this.authService.isAthenticated()) {
       this.currentUser = this.userService.getUserInfo();
     }
-    // this.currentUser = this.userService.getUserInfo();
   }
 
   logOut() {
-    this.logger.log('log out click!');
-    this.authService.LogOut();
+    this.authService.logOut();
   }
 }

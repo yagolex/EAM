@@ -1,25 +1,24 @@
-import { Course } from './course';
 import { Injectable } from '@angular/core';
-import { ICourseItem } from './i-course-item';
+import { Course } from './course';
 
 @Injectable()
 export class CourseService {
-  private internalCourseList: ICourseItem[] = [
-    CourseService.GetNewCourse(
+  private internalCourseList: Course[] = [
+    CourseService.getNewCourse(
       'Video course 2. Name Tag',
       'Learn about your other course description.',
       new Date(2019, 10, 20),
       602,
       2
     ),
-    CourseService.GetNewCourse(
+    CourseService.getNewCourse(
       'Video course 1. Name Tag',
       'Learn about where you can find course description.',
       new Date(2019, 10, 10),
       541,
       1
     ),
-    CourseService.GetNewCourse(
+    CourseService.getNewCourse(
       'Video course 3. Name Tag',
       'Learn about your third course.',
       new Date(2030, 13, 29),
@@ -29,7 +28,7 @@ export class CourseService {
     )
   ];
 
-  public static GetNewCourse(
+  public static getNewCourse(
     title: string,
     description: string,
     startDate: Date,
@@ -37,64 +36,33 @@ export class CourseService {
     id: number,
     topRated: boolean = false
   ): Course {
-    const tmpCourse = new Course();
-    tmpCourse.title = title;
-    tmpCourse.description = description;
-    tmpCourse.creationDate = startDate;
-    tmpCourse.durationMinutes = durationMinutes;
-    tmpCourse.id = id;
-    tmpCourse.topRated = topRated;
-
-    return tmpCourse;
+    return { title, description, creationDate: startDate, durationMinutes, id, topRated };
   }
 
-  GetCourseList(): ICourseItem[] {
+  getCourseList(): Course[] {
     return this.internalCourseList;
   }
 
-  UpdateCourse(updatedCourseItem: ICourseItem): boolean {
-    const oldCourse = this.GetCourseById(updatedCourseItem.id);
+  updateCourse(updatedCourseItem: Course): boolean {
+    const oldCourse = this.getCourseById(updatedCourseItem.id);
     const index = this.internalCourseList.indexOf(oldCourse);
     this.internalCourseList[index] = updatedCourseItem;
 
     return true;
   }
 
-  DeleteCourse(courseId: number): boolean {
-    const oldCourse = this.GetCourseById(courseId);
+  deleteCourse(courseId: number): boolean {
+    const oldCourse = this.getCourseById(courseId);
     const index = this.internalCourseList.indexOf(oldCourse);
     this.internalCourseList.splice(index, 1);
     return true;
   }
 
-  GetCourseById(couseId: number): ICourseItem {
+  getCourseById(couseId: number): Course {
     const result = this.internalCourseList.filter(item => item.id === couseId);
     if (result) {
       return result[0];
     }
     return null;
-  }
-
-  CreateCourse(
-    title: string,
-    description: string,
-    startDate: Date,
-    durationMinutes: number,
-    topRated: boolean = false
-  ): ICourseItem {
-    this.internalCourseList.sort(item => item.id);
-    const newCourseId: number = 1;
-    const newCourse = CourseService.GetNewCourse(
-      title,
-      description,
-      startDate,
-      durationMinutes,
-      newCourseId,
-      topRated
-    );
-
-    this.internalCourseList.push(newCourse);
-
-    return this.GetCourseById(newCourseId);
   }
 }

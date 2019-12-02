@@ -1,14 +1,14 @@
-import { User } from './user';
 import { Injectable } from '@angular/core';
+import { User } from './user';
 
 @Injectable()
 export class UserService {
-  getUserInfo() {
-    const user = new User();
-    user.firstName = 'Alex';
-    user.lastName = 'Graboski';
-    user.login = 'direfox';
-    user.password = 'test';
-    return user;
+  getUserInfo(): User {
+    return {
+      firstName: 'Alex',
+      lastName: 'Graboski',
+      login: 'direfox',
+      password: 'test'
+    };
   }
 }

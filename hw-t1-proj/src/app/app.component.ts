@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthenticationService } from './core/model/auth-service.service';
 
 @Component({
@@ -6,12 +6,11 @@ import { AuthenticationService } from './core/model/auth-service.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'hw-t1-proj';
   constructor(private authService: AuthenticationService) {}
 
-  HasAthenticatedUser(): boolean {
-    return this.authService.IsAthenticated(this.authService.GetUserInfo());
+  hasAthenticatedUser(): boolean {
+    return this.authService.isAthenticated();
   }
-  ngOnInit(): void {}
 }

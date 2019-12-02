@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { IUser } from './i-user';
+import { User } from './user';
 import { UserService } from './user-service';
 
 @Injectable()
 export class AuthenticationService {
-  private autenticatedUser: IUser;
+  private autenticatedUser: User;
   private autenticationToken: string;
 
   constructor(private userService: UserService) {}
-  Login(login: string, pwd: string): boolean {
+  login(login: string, pwd: string): boolean {
     const user = this.userService.getUserInfo();
     if (login === user.login && pwd === 'test') {
       this.autenticatedUser = user;
@@ -17,14 +17,21 @@ export class AuthenticationService {
     }
     return false;
   }
-  LogOut() {
+
+  logOut() {
     this.autenticatedUser = null;
     this.autenticationToken = null;
   }
-  IsAthenticated(login: string): boolean {
-    return login != null && this.autenticatedUser !== null && this.autenticatedUser.login === login;
+
+  isAthenticated(): boolean {
+    return (
+      this.autenticatedUser !== null &&
+      this.autenticatedUser !== undefined &&
+      this.autenticatedUser.login !== null
+    );
   }
-  GetUserInfo(): string {
+
+  getUserInfo(): string {
     return this.autenticatedUser == null ? null : this.autenticatedUser.login;
   }
 }

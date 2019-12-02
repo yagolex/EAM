@@ -6,7 +6,6 @@ import { CourseItemComponent } from '../course-item/course-item.component';
 import { CourseService } from '../model/course-service';
 import { LoggerService } from '../model/logger-service';
 import { By } from '@angular/platform-browser';
-import { Course } from '../model/course';
 import { OrderByPipe } from '../order-by.pipe';
 import { FilterByPipe } from '../filter-by.pipe';
 import { CourseItemBorderDirective } from '../course-item-border.directive';
@@ -18,8 +17,8 @@ describe('#CourseListComponent', () => {
 
   let courseService: CourseService;
   const courseServiceStub: Partial<CourseService> = {
-    GetCourseList: () => [
-      CourseService.GetNewCourse('Name', 'Description', new Date(2019, 10, 27), 541, 1)
+    getCourseList: () => [
+      CourseService.getNewCourse('Name', 'Description', new Date(2019, 10, 27), 541, 1)
     ]
   };
 
@@ -82,11 +81,11 @@ describe('#CourseListComponent', () => {
     const getDataSpy = spyOn(courseService, 'GetCourseList');
     component.ngOnInit();
     expect(getDataSpy).toHaveBeenCalled();
-    expect(component.courseList).toEqual(courseService.GetCourseList());
+    expect(component.courseList).toEqual(courseService.getCourseList());
   });
 
   it('should have courseList initialised ', () => {
     component.ngOnInit();
-    expect(component.courseList).toEqual(courseService.GetCourseList());
+    expect(component.courseList).toEqual(courseService.getCourseList());
   });
 });

@@ -1,9 +1,9 @@
 <div class="container-fluid">
-  <ng-container *ngIf="HasAthenticatedUser(); else noData">
+  <ng-container *ngIf="hasAthenticatedUser(); else noData">
     <app-header></app-header>
     <app-breadcrumbs></app-breadcrumbs>
     <app-course-list></app-course-list>
     <app-footer></app-footer>
   </ng-container>
-  <app-login-page #noData *ngIf="!HasAthenticatedUser()"></app-login-page>
+  <app-login-page #noData *ngIf="!hasAthenticatedUser()"></app-login-page>
 </div>

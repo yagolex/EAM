@@ -18,6 +18,7 @@ import { OrderByPipe } from './order-by.pipe';
 import { FilterByPipe } from './filter-by.pipe';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthenticationService } from './model/auth-service.service';
+import { GetFullNamePipe } from './get-full-name.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AuthenticationService } from './model/auth-service.service';
     GetDurationPipe,
     OrderByPipe,
     FilterByPipe,
-    LoginPageComponent
+    LoginPageComponent,
+    GetFullNamePipe
   ],
   imports: [CommonModule, FormsModule],
   providers: [

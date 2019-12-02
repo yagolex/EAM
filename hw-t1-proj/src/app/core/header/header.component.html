@@ -7,7 +7,7 @@
   <span class="mr-4 text-light font-small text-right">
     <i class="material-icons">account_circle</i>
     &nbsp;
-    {{ currentUser.getFullName() }}
+    {{ currentUser | getFullName }}
     &nbsp;
     <a href="#" (click)="logOut()">
       <i class="material-icons">exit_to_app</i>
