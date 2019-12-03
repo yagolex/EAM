@@ -1,4 +1,4 @@
-import { CourseService } from './course-service';
+import { CourseService } from './course.service';
 import { DatePipe } from '@angular/common';
 
 describe('CourseService', () => {

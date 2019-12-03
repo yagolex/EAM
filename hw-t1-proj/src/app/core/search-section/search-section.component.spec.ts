@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchSectionComponent } from './search-section.component';
 import { FormsModule } from '@angular/forms';
-import { LoggerService } from '../model/logger-service';
+import { LoggerService } from '../model/logger.service';
 
 describe('SearchSectionComponent', () => {
   let component: SearchSectionComponent;

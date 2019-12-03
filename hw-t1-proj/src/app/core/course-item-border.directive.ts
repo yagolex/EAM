@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
-import { LoggerService } from './model/logger-service';
+import { LoggerService } from './model/logger.service';
 
 @Directive({
   selector: '[appCourseItemBorder]'

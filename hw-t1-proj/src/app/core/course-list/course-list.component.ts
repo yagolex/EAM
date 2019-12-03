@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from '../model/course-service';
-import { LoggerService } from '../model/logger-service';
+import { CourseService } from '../model/course.service';
+import { LoggerService } from '../model/logger.service';
 import { FilterByPipe } from '../filter-by.pipe';
 import { Course } from '../model/course';
 
