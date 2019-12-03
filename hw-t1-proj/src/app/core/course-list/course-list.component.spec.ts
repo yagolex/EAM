@@ -3,8 +3,8 @@ import { CourseListComponent } from './course-list.component';
 import { FormsModule } from '@angular/forms';
 import { SearchSectionComponent } from '../search-section/search-section.component';
 import { CourseItemComponent } from '../course-item/course-item.component';
-import { CourseService } from '../model/course-service';
-import { LoggerService } from '../model/logger-service';
+import { CourseService } from '../model/course.service';
+import { LoggerService } from '../model/logger.service';
 import { By } from '@angular/platform-browser';
 import { OrderByPipe } from '../order-by.pipe';
 import { FilterByPipe } from '../filter-by.pipe';
@@ -78,7 +78,7 @@ describe('#CourseListComponent', () => {
   });
 
   it('should call courseService', () => {
-    const getDataSpy = spyOn(courseService, 'GetCourseList');
+    const getDataSpy = spyOn(courseService, 'getCourseList');
     component.ngOnInit();
     expect(getDataSpy).toHaveBeenCalled();
     expect(component.courseList).toEqual(courseService.getCourseList());

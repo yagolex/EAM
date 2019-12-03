@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { LoggerService } from '../model/logger-service';
+import { LoggerService } from '../model/logger.service';
 import { Course } from '../model/course';
 
 @Component({

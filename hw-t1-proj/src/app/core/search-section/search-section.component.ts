@@ -1,5 +1,5 @@
 import { Component, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { LoggerService } from '../model/logger-service';
+import { LoggerService } from '../model/logger.service';
 
 @Component({
   selector: 'app-search-section',
