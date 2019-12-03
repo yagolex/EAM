@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../model/i-user';
+import { User } from '../model/user';
 import { UserService } from '../model/user-service';
+import { AuthenticationService } from '../model/auth-service.service';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +9,17 @@ import { UserService } from '../model/user-service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  currentUser: IUser;
+  currentUser: User;
 
-  constructor(private userService: UserService) {}
+  constructor(private authService: AuthenticationService, private userService: UserService) {}
 
   ngOnInit() {
-    this.currentUser = this.userService.getUserInfo();
+    if (this.authService.isAthenticated()) {
+      this.currentUser = this.userService.getUserInfo();
+    }
+  }
+
+  logOut() {
+    this.authService.logOut();
   }
 }

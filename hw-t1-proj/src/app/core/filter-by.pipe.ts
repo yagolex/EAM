@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ICourseItem } from './model/i-course-item';
+import { Course } from './model/course';
 
 @Pipe({
   name: 'filterBy'
 })
 export class FilterByPipe implements PipeTransform {
-  transform(arrayToFilter: ICourseItem[], searchCriteria: string): ICourseItem[] {
+  transform(arrayToFilter: Course[], searchCriteria: string): Course[] {
     return arrayToFilter.filter(item => item.title.indexOf(searchCriteria) !== -1);
   }
 }

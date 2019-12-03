@@ -2,10 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseItemComponent } from './course-item.component';
 import { LoggerService } from '../model/logger-service';
-import { Course } from '../model/course';
 import { By } from '@angular/platform-browser';
 import { CourseItemBorderDirective } from '../course-item-border.directive';
 import { GetDurationPipe } from '../get-duration.pipe';
+import { CourseService } from '../model/course-service';
 
 describe('#CourseItemComponent', () => {
   let component: CourseItemComponent;
@@ -21,7 +21,7 @@ describe('#CourseItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseItemComponent);
     component = fixture.componentInstance;
-    const course = Course.GetCourse(
+    const course = CourseService.getNewCourse(
       'Video course 1. Name Tag',
       'Learn about where you can find course description.',
       new Date(2019, 10, 27),
