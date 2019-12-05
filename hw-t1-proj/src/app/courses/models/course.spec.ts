@@ -1,10 +1,10 @@
 import { Course } from './course';
 
-describe('#Course', () => {
-  it('should create an instance', () => {
-    expect(new Course()).toBeTruthy();
-  });
-});
+// describe('#Course', () => {
+//   it('should create an instance', () => {
+//     expect(new Course()).toBeTruthy();
+//   });
+// });
 
 // describe('#Course', () => {
 //   it('should give good date', () => {

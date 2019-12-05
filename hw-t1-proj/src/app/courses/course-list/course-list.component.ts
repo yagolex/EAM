@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from '../model/course.service';
-import { LoggerService } from '../model/logger.service';
+import { CourseService } from '../models/course.service';
+import { LoggerService } from '../../shared/models/logger.service';
 import { FilterByPipe } from '../filter-by.pipe';
-import { Course } from '../model/course';
+import { Course } from '../models/course';
 
 @Component({
   selector: 'app-course-list',

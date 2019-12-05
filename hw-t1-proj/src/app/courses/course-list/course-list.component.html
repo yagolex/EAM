@@ -1,7 +1,6 @@
 <div class="px-5 bg-light pb-5">
+  <app-search-section (searchCourseItemEvent)="filterCourseItems($event)"></app-search-section>
   <ng-container *ngIf="hasItems(); else noData">
-    <app-search-section (searchCourseItemEvent)="filterCourseItems($event)"></app-search-section>
-
     <div class="list-group">
       <app-course-item
         *ngFor="let singleCourse of courseList | orderBy: 'creationDate'"
