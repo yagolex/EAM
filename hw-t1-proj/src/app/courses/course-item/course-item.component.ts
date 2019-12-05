@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { LoggerService } from '../model/logger.service';
-import { Course } from '../model/course';
+import { LoggerService } from '../../shared/models/logger.service';
+import { Course } from '../models/course';
 
 @Component({
   selector: 'app-course-item',

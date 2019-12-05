@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseListComponent } from './course-list.component';
 import { FormsModule } from '@angular/forms';
-import { SearchSectionComponent } from '../search-section/search-section.component';
+import { SearchSectionComponent } from '../../core/search-section/search-section.component';
 import { CourseItemComponent } from '../course-item/course-item.component';
-import { CourseService } from '../model/course.service';
-import { LoggerService } from '../model/logger.service';
+import { CourseService } from '../models/course.service';
+import { LoggerService } from '../../shared/models/logger.service';
 import { By } from '@angular/platform-browser';
-import { OrderByPipe } from '../order-by.pipe';
+import { OrderByPipe } from '../../core/order-by.pipe';
 import { FilterByPipe } from '../filter-by.pipe';
 import { CourseItemBorderDirective } from '../course-item-border.directive';
-import { GetDurationPipe } from '../get-duration.pipe';
+import { GetDurationPipe } from '../../core/get-duration.pipe';
 
 describe('#CourseListComponent', () => {
   let component: CourseListComponent;

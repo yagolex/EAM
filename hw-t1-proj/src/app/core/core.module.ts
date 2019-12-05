@@ -1,24 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CourseListComponent } from './course-list/course-list.component';
+import { CourseListComponent } from '../courses/course-list/course-list.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { CourseItemComponent } from './course-item/course-item.component';
+import { CourseItemComponent } from '../courses/course-item/course-item.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { SearchSectionComponent } from './search-section/search-section.component';
-import { CourseService } from './model/course.service';
+import { CourseService } from '../courses/models/course.service';
 import { DatePipe } from '@angular/common';
-import { UserService } from './model/user.service';
+import { UserService } from './models/user.service';
 
 import { FormsModule } from '@angular/forms';
-import { LoggerService } from './model/logger.service';
-import { CourseItemBorderDirective } from './course-item-border.directive';
+import { LoggerService } from '../shared/models/logger.service';
+import { CourseItemBorderDirective } from '../courses/course-item-border.directive';
 import { GetDurationPipe } from './get-duration.pipe';
 import { OrderByPipe } from './order-by.pipe';
-import { FilterByPipe } from './filter-by.pipe';
+import { FilterByPipe } from '../courses/filter-by.pipe';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { AuthenticationService } from './model/auth.service';
+import { AuthenticationService } from './models/auth.service';
 import { GetFullNamePipe } from './get-full-name.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { GetFullNamePipe } from './get-full-name.pipe';
     LoginPageComponent,
     GetFullNamePipe
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SharedModule],
   providers: [
     CourseService,
     DatePipe,
