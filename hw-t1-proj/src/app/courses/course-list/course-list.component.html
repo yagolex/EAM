@@ -20,7 +20,9 @@
       Load more...
     </a>
   </ng-container>
-  <a #noData href="#" class="list-group-item mt-2 text-center my-2" *ngIf="!hasItems()">
-    NO DATA. FEEL FREE TO ADD NEW COURSE.
-  </a>
+  <ng-template #noData>
+    <a href="#" class="list-group-item mt-2 text-center my-2" *ngIf="!hasItems()">
+      NO DATA. FEEL FREE TO ADD NEW COURSE.
+    </a>
+  </ng-template>
 </div>
