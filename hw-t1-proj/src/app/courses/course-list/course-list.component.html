@@ -1,4 +1,5 @@
 <div class="px-5 bg-light pb-5">
+  <ng-container *ngIf="hasCouseSelected(); else noCouseSelected">  
   <app-search-section (searchCourseItemEvent)="filterCourseItems($event)"></app-search-section>
   <ng-container *ngIf="hasItems(); else noData">
     <div class="list-group">
@@ -25,4 +26,8 @@
       NO DATA. FEEL FREE TO ADD NEW COURSE.
     </a>
   </ng-template>
+</ng-container>
+<ng-template #noCouseSelected>
+  <app-course-crud></app-course-crud>
+</ng-template>
 </div>

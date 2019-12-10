@@ -7,6 +7,6 @@ import { CourseCrudComponent } from './course-crud/course-crud.component';
   declarations: [CourseCrudComponent],
   imports: [CommonModule, FormsModule],
   providers: [],
-  exports: []
+  exports: [CourseCrudComponent]
 })
 export class CoursesModule {}

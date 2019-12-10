@@ -20,6 +20,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthenticationService } from './models/auth.service';
 import { GetFullNamePipe } from './get-full-name.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { CoursesModule } from '../courses/courses.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { SharedModule } from '../shared/shared.module';
     LoginPageComponent,
     GetFullNamePipe
   ],
-  imports: [CommonModule, FormsModule, SharedModule],
+  imports: [CommonModule, FormsModule, SharedModule, CoursesModule],
   providers: [
     CourseService,
     DatePipe,

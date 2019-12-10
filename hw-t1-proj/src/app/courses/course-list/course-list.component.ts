@@ -11,6 +11,7 @@ import { Course } from '../models/course';
 })
 export class CourseListComponent implements OnInit {
   public courseList: Course[];
+  public selectedCourse: Course;
 
   constructor(
     private courseService: CourseService,
@@ -46,5 +47,9 @@ export class CourseListComponent implements OnInit {
 
   public hasItems(): boolean {
     return this.courseList != null && this.courseList.length > 0;
+  }
+
+  public hasCouseSelected(): boolean {
+    return this.selectedCourse != null && this.selectedCourse != undefined;
   }
 }
