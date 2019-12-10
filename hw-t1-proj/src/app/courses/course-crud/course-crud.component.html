@@ -1,16 +1,62 @@
+<label for="courseTitle">Title</label>
 <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">Title</span>
-        </div>
-        <input id="couseTitle" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+  <input
+    type="text"
+    class="form-control"
+    id="courseTitle"
+    aria-describedby="basic-addon3"
+    [(ngModel)]="activeCourse.title"
+    placeholder="Course Title"
+  />
 </div>
 
-<label for="basic-url">Your vanity URL</label>
+<label for="courseDescription">Description</label>
 <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-  </div>
-  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+  <textarea
+    class="form-control"
+    aria-label="With textarea"
+    id="courseDescription"
+    [(ngModel)]="activeCourse.description"
+  ></textarea>
 </div>
+
+<label for="courseDate">Date</label>
+<div class="input-group mb-3">
+  <input
+    type="text"
+    class="form-control"
+    id="courseDate"
+    aria-describedby="basic-addon3"
+    [(ngModel)]="activeCourse.creationDate"
+    placeholder="mm.DD.yyyy"
+  />
+</div>
+
+<label for="courseDuration">Duration</label>
+<div class="input-group mb-3">
+  <input
+    type="text"
+    class="form-control"
+    id="courseDuration"
+    aria-describedby="basic-addon3"
+    [(ngModel)]="activeCourse.durationMinutes"
+    placeholder="Duration in Minutes"
+  />
+</div>
+
+<label for="courseAuthors">Authors</label>
+<div class="input-group mb-3">
+  <input
+    type="text"
+    class="form-control"
+    id="courseAuthors"
+    aria-describedby="basic-addon3"
+    [(ngModel)]="activeCourse.authors"
+    placeholder="Authors List"
+  />
+</div>
+<br />
+<button type="button" class="btn btn-outline-success" (click)="save()">Save</button>&nbsp;
+<button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
 
 <!-- https://getbootstrap.com/docs/4.0/components/input-group/#basic-example -->

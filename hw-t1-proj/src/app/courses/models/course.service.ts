@@ -34,9 +34,10 @@ export class CourseService {
     startDate: Date,
     durationMinutes: number,
     id: number,
-    topRated: boolean = false
+    topRated: boolean = false,
+    authors: string = ''
   ): Course {
-    return { title, description, creationDate: startDate, durationMinutes, id, topRated };
+    return { title, description, creationDate: startDate, durationMinutes, id, topRated, authors };
   }
 
   getCourseList(): Course[] {

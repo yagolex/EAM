@@ -5,4 +5,5 @@ export interface Course {
   durationMinutes: number;
   id: number;
   topRated: boolean;
+  authors: string;
 }

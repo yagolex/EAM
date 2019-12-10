@@ -28,8 +28,19 @@ export class CourseListComponent implements OnInit {
     }
   }
 
+  public saveSelectedCourse(updatedCourse: Course): void {
+    this.logger.log(`List component - saveSelectedCourse with id = ${updatedCourse.id}`);
+    this.selectedCourse = null;
+  }
+
+  public cancelSelectedCourse(): void {
+    this.logger.log(`List component - cancelSelectedCourse`);
+    this.selectedCourse = null;
+  }
+
   public editCourseItem(id: number): void {
-    this.logger.log(`List component - editCourseItem with id = ${id}`);
+    //this.logger.log(`List component - editCourseItem with id = ${id}`);
+    this.selectedCourse = this.courseService.getCourseList().filter(item => item.id === id)[0];
   }
 
   public loadMoreCourseItems(): void {
