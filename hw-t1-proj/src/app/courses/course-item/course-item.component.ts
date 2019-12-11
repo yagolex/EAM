@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { LoggerService } from '../../shared/models/logger.service';
+import { LoggerService } from '../../core/services/logger.service';
 import { Course } from '../models/course';
 
 @Component({

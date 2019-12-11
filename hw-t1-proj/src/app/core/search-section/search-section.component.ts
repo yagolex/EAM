@@ -6,7 +6,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { LoggerService } from '../../shared/models/logger.service';
+import { LoggerService } from '../services/logger.service';
 
 @Component({
   selector: 'app-search-section',

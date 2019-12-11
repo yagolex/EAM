@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
 import { FormsModule } from '@angular/forms';
-import { UserService } from '../models/user.service';
+import { UserService } from '../services/user.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

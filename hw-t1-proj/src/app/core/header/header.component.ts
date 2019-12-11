@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
-import { UserService } from '../models/user.service';
-import { AuthenticationService } from '../models/auth.service';
+import { UserService } from '../services/user.service';
+import { AuthenticationService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthenticationService, private userService: UserService) {}
 
   ngOnInit() {
-    if (this.authService.isAthenticated()) {
+    if (this.authService.isAuthenticated()) {
       this.currentUser = this.userService.getUserInfo();
     }
   }

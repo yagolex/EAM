@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseItemComponent } from './course-item.component';
-import { LoggerService } from '../../shared/models/logger.service';
+import { LoggerService } from '../../core/services/logger.service';
 import { By } from '@angular/platform-browser';
 import { CourseItemBorderDirective } from '../course-item-border.directive';
-import { GetDurationPipe } from '../../core/get-duration.pipe';
-import { CourseService } from '../models/course.service';
+import { GetDurationPipe } from '../../shared/pipes/get-duration.pipe';
+import { CourseService } from '../services/course.service';
 
 describe('#CourseItemComponent', () => {
   let component: CourseItemComponent;
