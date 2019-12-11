@@ -1,26 +1,37 @@
 <div class="px-5 bg-light pb-5">
-  <app-search-section (searchCourseItemEvent)="filterCourseItems($event)"></app-search-section>
-  <ng-container *ngIf="hasItems(); else noData">
-    <div class="list-group">
-      <app-course-item
-        *ngFor="let singleCourse of courseList | orderBy: 'creationDate'"
-        [courseItem]="singleCourse"
-        (deleteCourseItemEvent)="deleteCourseItem($event)"
-        (editCourseItemEvent)="editCourseItem($event)"
-      >
-      </app-course-item>
-    </div>
+  <ng-container *ngIf="!hasCouseSelected(); else gotCourseSelected">
+    <app-search-section (searchCourseItemEvent)="filterCourseItems($event)"></app-search-section>
+    <ng-container *ngIf="hasItems(); else noData">
+      <div class="list-group">
+        <app-course-item
+          *ngFor="let singleCourse of courseList | orderBy: 'creationDate'"
+          [courseItem]="singleCourse"
+          (deleteCourseItemEvent)="deleteCourseItem($event)"
+          (editCourseItemEvent)="editCourseItem($event)"
+        >
+        </app-course-item>
+      </div>
 
-    <a
-      id="load-more-button"
-      href="#"
-      class="list-group-item mt-2 text-center my-2"
-      (click)="loadMoreCourseItems()"
-    >
-      Load more...
-    </a>
+      <a
+        id="load-more-button"
+        href="#"
+        class="list-group-item mt-2 text-center my-2"
+        (click)="loadMoreCourseItems()"
+      >
+        Load more...
+      </a>
+    </ng-container>
+    <ng-template #noData>
+      <a href="#" class="list-group-item mt-2 text-center my-2" *ngIf="!hasItems()">
+        NO DATA. FEEL FREE TO ADD NEW COURSE.
+      </a>
+    </ng-template>
   </ng-container>
-  <a #noData href="#" class="list-group-item mt-2 text-center my-2" *ngIf="!hasItems()">
-    NO DATA. FEEL FREE TO ADD NEW COURSE.
-  </a>
+  <ng-template #gotCourseSelected>
+    <app-course-crud
+      [activeCourse]="selectedCourse"
+      (saveCourseCrudEvent)="saveSelectedCourse($event)"
+      (cancelCourseCrudEvent)="cancelSelectedCourse()"
+    ></app-course-crud>
+  </ng-template>
 </div>

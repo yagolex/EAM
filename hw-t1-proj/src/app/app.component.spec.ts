@@ -8,14 +8,14 @@ import { FooterComponent } from './core/footer/footer.component';
 import { SearchSectionComponent } from './core/search-section/search-section.component';
 import { CourseItemComponent } from './courses/course-item/course-item.component';
 import { FormsModule } from '@angular/forms';
-import { CourseService } from './courses/models/course.service';
+import { CourseService } from './courses/services/course.service';
 import { DatePipe } from '@angular/common';
-import { UserService } from './core/models/user.service';
-import { LoggerService } from './shared/models/logger.service';
-import { OrderByPipe } from './core/order-by.pipe';
+import { UserService } from './core/services/user.service';
+import { LoggerService } from './core/services/logger.service';
+import { OrderByPipe } from './shared/pipes/order-by.pipe';
 import { CourseItemBorderDirective } from './courses/course-item-border.directive';
-import { GetDurationPipe } from './core/get-duration.pipe';
-import { FilterByPipe } from './courses/filter-by.pipe';
+import { GetDurationPipe } from './shared/pipes/get-duration.pipe';
+import { FilterByPipe } from './shared/pipes/filter-by.pipe';
 
 describe('#AppComponent', () => {
   beforeEach(async(() => {

@@ -1,10 +1,18 @@
-import { Component, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { LoggerService } from '../../shared/models/logger.service';
+import {
+  Component,
+  OnChanges,
+  SimpleChanges,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy
+} from '@angular/core';
+import { LoggerService } from '../services/logger.service';
 
 @Component({
   selector: 'app-search-section',
   templateUrl: './search-section.component.html',
-  styleUrls: ['./search-section.component.css']
+  styleUrls: ['./search-section.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchSectionComponent implements OnChanges {
   @Output() searchCourseItemEvent: EventEmitter<string> = new EventEmitter<string>();

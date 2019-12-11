@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { User } from './models/user';
+import { User } from '../../core/models/user';
 
 @Pipe({
   name: 'getFullName'

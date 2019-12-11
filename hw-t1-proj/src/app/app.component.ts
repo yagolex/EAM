@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from './core/models/auth.service';
+import { AuthenticationService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent {
   constructor(private authService: AuthenticationService) {}
 
   hasAthenticatedUser(): boolean {
-    if (!this.authService.isAthenticated()) {
+    if (!this.authService.isAuthenticated()) {
       this.authService.login('direfox', 'test');
     }
     return true;
