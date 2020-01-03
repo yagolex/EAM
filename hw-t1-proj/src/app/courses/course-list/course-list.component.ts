@@ -3,6 +3,7 @@ import { CourseService } from '../services/course.service';
 import { LoggerService } from '../../core/services/logger.service';
 import { FilterByPipe } from '../../shared/pipes/filter-by.pipe';
 import { Course } from '../models/course';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-list',
@@ -11,12 +12,12 @@ import { Course } from '../models/course';
 })
 export class CourseListComponent implements OnInit {
   public courseList: Course[];
-  public selectedCourse: Course;
 
   constructor(
     private courseService: CourseService,
     private logger: LoggerService,
-    private filter: FilterByPipe
+    private filter: FilterByPipe,
+    private router: Router
   ) {}
 
   public deleteCourseItem(id: number): void {
@@ -28,19 +29,10 @@ export class CourseListComponent implements OnInit {
     }
   }
 
-  public saveSelectedCourse(updatedCourse: Course): void {
-    this.logger.log(`List component - saveSelectedCourse with id = ${updatedCourse.id}`);
-    this.selectedCourse = null;
-  }
-
-  public cancelSelectedCourse(): void {
-    this.logger.log(`List component - cancelSelectedCourse`);
-    this.selectedCourse = null;
-  }
-
   public editCourseItem(id: number): void {
-    //this.logger.log(`List component - editCourseItem with id = ${id}`);
-    this.selectedCourse = this.courseService.getCourseList().filter(item => item.id === id)[0];
+    this.logger.log(`List component - editCourseItem with id = ${id}`);
+    //let selectedCourse = this.courseService.getCourseList().filter(item => item.id === id)[0];
+    this.router.navigate(['editCourse', id]);
   }
 
   public loadMoreCourseItems(): void {
@@ -58,9 +50,5 @@ export class CourseListComponent implements OnInit {
 
   public hasItems(): boolean {
     return this.courseList != null && this.courseList.length > 0;
-  }
-
-  public hasCouseSelected(): boolean {
-    return this.selectedCourse != null && this.selectedCourse != undefined;
   }
 }
