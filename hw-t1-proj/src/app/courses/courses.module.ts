@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { CourseCrudComponent } from './course-crud/course-crud.component';
 import { SharedModule } from '../shared/shared.module';
 import { EditCourseComponent } from './edit-course/edit-course.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [CourseCrudComponent, EditCourseComponent],
-  imports: [CommonModule, FormsModule, SharedModule],
+  imports: [AppRoutingModule, CommonModule, FormsModule, SharedModule],
   providers: [],
   exports: [CourseCrudComponent, EditCourseComponent]
 })

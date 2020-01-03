@@ -7,14 +7,9 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: 'courses', pathMatch: 'full' },
+  { path: '', redirectTo: 'courses', pathMatch: 'full' },
   { path: 'courses', component: CourseListComponent },
   { path: 'courses/:id', component: EditCourseComponent },
-  {
-    path: 'editCourse',
-    component: EditCourseComponent,
-    loadChildren: () => import('./courses/courses.module').then(mod => mod.CoursesModule)
-  },
   { path: 'courses/new', component: EditCourseComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

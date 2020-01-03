@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Course } from '../models/course';
 import { LoggerService } from 'src/app/core/services/logger.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,8 +9,9 @@ import { CourseService } from '../services/course.service';
   templateUrl: './edit-course.component.html',
   styleUrls: ['./edit-course.component.css']
 })
-export class EditCourseComponent implements OnInit {
+export class EditCourseComponent implements OnInit, OnDestroy {
   public selectedCourse: Course;
+  private sub: any;
 
   constructor(
     private logger: LoggerService,
@@ -22,12 +23,19 @@ export class EditCourseComponent implements OnInit {
   }
 
   ngOnInit() {
-    let id = Number.parseInt(this.route.snapshot.paramMap.get('id'));
-    //this.hero$ = this.service.getHero(id);
-    this.selectedCourse = this.courseService.getCourseList().filter(item => item.id === id)[0];
-    // this.route.params.subscribe(routeParams => {
-    //   this.selectedCourse = routeParams.selectedCourse;
-    // });
+    this.logger.log(
+      `edit-course component - getCourseList - ${JSON.stringify(
+        JSON.stringify(this.courseService.getCourseList())
+      )}`
+    );
+    this.sub = this.route.params.subscribe(routeParams => {
+      let courseId = routeParams.id;
+      this.logger.log(`edit-course component - selectedId = ${courseId}`);
+      this.selectedCourse = this.courseService.getCourseById(parseInt(courseId));
+      this.logger.log(
+        `edit-course component - selectedCourse = ${JSON.stringify(this.selectedCourse)}`
+      );
+    });
   }
 
   public saveSelectedCourse(updatedCourse: Course): void {
@@ -40,5 +48,9 @@ export class EditCourseComponent implements OnInit {
     this.logger.log(`edit-course component - cancelSelectedCourse`);
     this.selectedCourse = null;
     this.router.navigate(['/courses']);
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

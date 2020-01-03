@@ -7,6 +7,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { LoggerService } from '../services/logger.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-section',
@@ -16,7 +17,7 @@ import { LoggerService } from '../services/logger.service';
 })
 export class SearchSectionComponent implements OnChanges {
   @Output() searchCourseItemEvent: EventEmitter<string> = new EventEmitter<string>();
-  constructor(private logger: LoggerService) {}
+  constructor(private logger: LoggerService, private router: Router) {}
   public searchCriteria: string = '';
 
   public search() {
