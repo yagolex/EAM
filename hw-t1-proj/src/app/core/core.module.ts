@@ -23,6 +23,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CoursesModule } from '../courses/courses.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AppRoutingModule } from '../app-routing.module';
     UserService,
     LoggerService,
     FilterByPipe,
-    AuthenticationService
+    AuthenticationService,
+    AuthGuard
   ],
   exports: [
     CourseListComponent,

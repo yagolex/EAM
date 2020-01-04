@@ -31,7 +31,6 @@ export class CourseListComponent implements OnInit {
 
   public editCourseItem(id: number): void {
     this.logger.log(`List component - editCourseItem with id = ${id}`);
-    //let selectedCourse = this.courseService.getCourseList().filter(item => item.id === id)[0];
     this.router.navigate(['courses', id], {
       queryParams: { redirectedFromClass: true }
     });
@@ -42,7 +41,6 @@ export class CourseListComponent implements OnInit {
   }
 
   public filterCourseItems(searchCriteria: string): void {
-    // this.logger.log(`List component - filterCourseItems - ${searchCriteria}`);
     this.courseList = this.filter.transform(this.courseService.getCourseList(), searchCriteria);
   }
 

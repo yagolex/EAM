@@ -5,8 +5,7 @@ import { Course } from '../models/course';
 @Component({
   selector: 'app-course-item',
   templateUrl: './course-item.component.html',
-  styleUrls: ['./course-item.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./course-item.component.css']
 })
 export class CourseItemComponent {
   @Input() courseItem: Course;
