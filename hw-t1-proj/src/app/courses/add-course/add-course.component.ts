@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './add-course.component.html',
   styleUrls: ['./add-course.component.css']
 })
-export class AddCourseComponent implements OnInit, OnDestroy {
+export class AddCourseComponent implements OnInit {
   public selectedCourse: Course;
 
   constructor(private router: Router, private courseService: CourseService) {}
@@ -24,9 +24,5 @@ export class AddCourseComponent implements OnInit, OnDestroy {
 
   public cancelSelectedCourse(): void {
     this.router.navigate(['/courses']);
-  }
-
-  ngOnDestroy() {
-    this.selectedCourse = null;
   }
 }

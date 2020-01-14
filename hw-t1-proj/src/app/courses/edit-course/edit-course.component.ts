@@ -38,8 +38,8 @@ export class EditCourseComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.selectedCourse = null;
-    this.selectedCourseBackup = null;
-    this.sub.unsubscribe();
+    if (this.sub != null) {
+      this.sub.unsubscribe();
+    }
   }
 }

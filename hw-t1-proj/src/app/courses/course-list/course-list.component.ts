@@ -31,9 +31,7 @@ export class CourseListComponent implements OnInit {
 
   public editCourseItem(id: number): void {
     this.logger.log(`List component - editCourseItem with id = ${id}`);
-    this.router.navigate(['courses', id], {
-      queryParams: { redirectedFromClass: true }
-    });
+    this.router.navigate(['courses', id]);
   }
 
   public loadMoreCourseItems(): void {
