@@ -4,7 +4,6 @@
   }
 </style>
 <a
-  href="#"
   class="list-group-item list-group-item-action flex-column align-items-start my-2"
   [ngClass]="[courseItem.topRated ? 'myBag' : 'NA']"
   appCourseItemBorder
@@ -27,17 +26,11 @@
     <button
       id="delete-course-button"
       class="btn btn-outline-info float-right"
-      type="submit"
       (click)="deleteItem()"
     >
       - Delete
     </button>
-    <button
-      id="edit-course-button"
-      class="btn btn-outline-info float-right"
-      type="submit"
-      (click)="editItem()"
-    >
+    <button id="edit-course-button" class="btn btn-outline-info float-right" (click)="editItem()">
       + Edit
     </button>
   </p>

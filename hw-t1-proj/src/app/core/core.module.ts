@@ -21,6 +21,9 @@ import { AuthenticationService } from './services/auth.service';
 import { GetFullNamePipe } from '../shared/pipes/get-full-name.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { CoursesModule } from '../courses/courses.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -35,16 +38,18 @@ import { CoursesModule } from '../courses/courses.module';
     OrderByPipe,
     FilterByPipe,
     LoginPageComponent,
-    GetFullNamePipe
+    GetFullNamePipe,
+    PageNotFoundComponent
   ],
-  imports: [CommonModule, FormsModule, SharedModule, CoursesModule],
+  imports: [AppRoutingModule, CommonModule, FormsModule, SharedModule, CoursesModule],
   providers: [
     CourseService,
     DatePipe,
     UserService,
     LoggerService,
     FilterByPipe,
-    AuthenticationService
+    AuthenticationService,
+    AuthGuard
   ],
   exports: [
     CourseListComponent,

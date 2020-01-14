@@ -1,7 +1,9 @@
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb" style="background-color:white">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item"><a href="#">Library</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Data</li>
-    </ol>
-  </nav>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" style="background-color:white">
+    <li class="breadcrumb-item"><a [routerLink]="['courses']">Courses</a></li>
+    <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs">
+      <!-- <a [routerLink]="[breadcrumb.url, breadcrumb.params]">{{ breadcrumb.label }}</a> -->
+      {{ breadcrumb.label }}
+    </li>
+  </ol>
+</nav>

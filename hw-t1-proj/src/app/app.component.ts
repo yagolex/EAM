@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from './core/services/auth.service';
+import { Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,13 @@ import { AuthenticationService } from './core/services/auth.service';
 })
 export class AppComponent {
   title = 'hw-t1-proj';
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService, private router: Router) {
+    this.router.events.subscribe((event: RouterEvent) => {
+      console.log(event);
+    });
+  }
 
-  hasAthenticatedUser(): boolean {
+  hasAuthenticatedUser(): boolean {
     if (!this.authService.isAuthenticated()) {
       this.authService.login('direfox', 'test');
     }

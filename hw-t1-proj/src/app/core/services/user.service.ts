@@ -6,7 +6,7 @@ export class UserService {
   getUserInfo(): User {
     return {
       firstName: 'Alex',
-      lastName: 'Graboski',
+      lastName: 'Grabovski',
       login: 'direfox',
       password: 'test'
     };

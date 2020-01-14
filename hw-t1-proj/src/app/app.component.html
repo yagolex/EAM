@@ -1,11 +1,11 @@
 <div class="container-fluid">
-  <ng-container *ngIf="hasAthenticatedUser(); else noData">
-    <app-header></app-header>
-    <app-breadcrumbs></app-breadcrumbs>
-    <app-course-list></app-course-list>
-    <app-footer></app-footer>
-  </ng-container>
-  <ng-template #noData>
-    <app-login-page *ngIf="!hasAthenticatedUser()"></app-login-page>
-  </ng-template>
+  <!-- <ng-container *ngIf="hasAuthenticatedUser(); else noData"> -->
+  <app-header></app-header>
+  <app-breadcrumbs></app-breadcrumbs>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+  <!-- </ng-container> -->
+  <!-- <ng-template #noData>
+    <app-login-page *ngIf="!hasAuthenticatedUser()"></app-login-page>
+  </ng-template> -->
 </div>
