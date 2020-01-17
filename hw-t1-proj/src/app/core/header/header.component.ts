@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
-import { UserService } from '../services/user.service';
 import { AuthenticationService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { LoggerService } from '../services/logger.service';
@@ -15,16 +14,15 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private userService: UserService,
     private router: Router,
     private logger: LoggerService
   ) {}
 
   ngOnInit() {
-    // todo: does not work, need to re-run this somehow to let user name to appear in header
-    if (this.authService.isAuthenticated()) {
-      this.currentUser = this.userService.getUserInfo();
-    }
+    // todo: does not work, need to fix it  somehow to let user name appear in header
+    this.currentUser = this.authService.authenticatedUser;
+    // todo: remove below after testing (it works)
+    //this.currentUser = { firstName: 'Alex', lastName: 'Graboski', login: 'aa', password: '' };
   }
 
   logOut() {

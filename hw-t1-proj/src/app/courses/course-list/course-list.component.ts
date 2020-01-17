@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../services/course.service';
 import { LoggerService } from '../../core/services/logger.service';
-import { FilterByPipe } from '../../shared/pipes/filter-by.pipe';
 import { Course } from '../models/course';
 import { Router } from '@angular/router';
+
+const default_start: number = 0;
+const default_count: number = 10;
 
 @Component({
   selector: 'app-course-list',
@@ -12,20 +14,27 @@ import { Router } from '@angular/router';
 })
 export class CourseListComponent implements OnInit {
   public courseList: Course[];
+  private start: number = default_start;
+  private searchCriteria: string = null;
 
   constructor(
     private courseService: CourseService,
     private logger: LoggerService,
-    private filter: FilterByPipe,
     private router: Router
   ) {}
 
   public deleteCourseItem(id: number): void {
     if (confirm('are you sure to delete course with id = ' + id)) {
-      // this.logger.log(`List component - deleteCourseItem - with id = ${id}`);
-      if (this.courseService.deleteCourse(id)) {
-        this.courseList = this.courseService.getCourseList();
-      }
+      this.courseService.deleteCourse(id).subscribe(
+        res => {
+          this.logger.log('delete successful for course with id = ' + id);
+          this.loadCourses();
+        },
+        err => {
+          this.logger.log(JSON.stringify(err));
+          alert('failed to delete item with id = ' + id);
+        }
+      );
     }
   }
 
@@ -35,15 +44,26 @@ export class CourseListComponent implements OnInit {
   }
 
   public loadMoreCourseItems(): void {
-    this.logger.log(`List component - loadMoreCourseItems`);
+    this.start = this.start + default_count;
+    this.loadCourses(true);
   }
 
   public filterCourseItems(searchCriteria: string): void {
-    this.courseList = this.filter.transform(this.courseService.getCourseList(), searchCriteria);
+    this.start = default_start;
+    this.searchCriteria = searchCriteria;
+    this.loadCourses();
+  }
+
+  private loadCourses(append: boolean = false) {
+    this.courseService
+      .getCourseList(this.start, default_count, this.searchCriteria)
+      .subscribe((items: Course[]) => {
+        append ? (this.courseList = this.courseList.concat(items)) : (this.courseList = items);
+      });
   }
 
   ngOnInit() {
-    this.courseList = this.courseService.getCourseList();
+    this.loadCourses();
   }
 
   public hasItems(): boolean {

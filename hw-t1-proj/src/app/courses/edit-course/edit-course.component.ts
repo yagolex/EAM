@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Course } from '../models/course';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from '../services/course.service';
+import { LoggerService } from 'src/app/core/services/logger.service';
 
 @Component({
   selector: 'app-edit-course',
@@ -16,14 +17,23 @@ export class EditCourseComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private logger: LoggerService
   ) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(routeParams => {
       let courseId = routeParams.id;
-      this.selectedCourse = this.courseService.getCourseById(parseInt(courseId));
-      this.selectedCourseBackup = JSON.stringify(this.selectedCourse);
+      this.courseService.getCourseById(parseInt(courseId)).subscribe(
+        (res: Course) => {
+          this.selectedCourse = res;
+          this.selectedCourseBackup = JSON.stringify(this.selectedCourse);
+        },
+        err => {
+          this.logger.log(err);
+          alert('Unable to load Course to edit, pls retry.');
+        }
+      );
     });
   }
 

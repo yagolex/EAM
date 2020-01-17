@@ -7,3 +7,13 @@ export interface Course {
   topRated: boolean;
   authors: string;
 }
+
+export interface CourseFromApi {
+  id;
+  name;
+  description;
+  isTopRated;
+  date;
+  authors;
+  length;
+}
