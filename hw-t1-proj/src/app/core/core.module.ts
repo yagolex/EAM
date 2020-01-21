@@ -15,7 +15,6 @@ import { LoggerService } from './services/logger.service';
 import { CourseItemBorderDirective } from '../courses/course-item-border.directive';
 import { GetDurationPipe } from '../shared/pipes/get-duration.pipe';
 import { OrderByPipe } from '../shared/pipes/order-by.pipe';
-import { FilterByPipe } from '../shared/pipes/filter-by.pipe';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthenticationService } from './services/auth.service';
 import { GetFullNamePipe } from '../shared/pipes/get-full-name.pipe';
@@ -24,6 +23,9 @@ import { CoursesModule } from '../courses/courses.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { AuthGuard } from './auth.guard';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApplyTokenInterceptor } from './services/apply-token.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,6 @@ import { AuthGuard } from './auth.guard';
     CourseItemBorderDirective,
     GetDurationPipe,
     OrderByPipe,
-    FilterByPipe,
     LoginPageComponent,
     GetFullNamePipe,
     PageNotFoundComponent
@@ -47,9 +48,13 @@ import { AuthGuard } from './auth.guard';
     DatePipe,
     UserService,
     LoggerService,
-    FilterByPipe,
     AuthenticationService,
-    AuthGuard
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApplyTokenInterceptor,
+      multi: true
+    }
   ],
   exports: [
     CourseListComponent,

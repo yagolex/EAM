@@ -15,7 +15,6 @@ import { LoggerService } from './core/services/logger.service';
 import { OrderByPipe } from './shared/pipes/order-by.pipe';
 import { CourseItemBorderDirective } from './courses/course-item-border.directive';
 import { GetDurationPipe } from './shared/pipes/get-duration.pipe';
-import { FilterByPipe } from './shared/pipes/filter-by.pipe';
 
 describe('#AppComponent', () => {
   beforeEach(async(() => {
@@ -33,7 +32,7 @@ describe('#AppComponent', () => {
         CourseItemBorderDirective,
         GetDurationPipe
       ],
-      providers: [CourseService, DatePipe, UserService, LoggerService, FilterByPipe]
+      providers: [CourseService, DatePipe, UserService, LoggerService]
     }).compileComponents();
   }));
 

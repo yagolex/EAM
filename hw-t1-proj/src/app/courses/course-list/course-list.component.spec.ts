@@ -7,7 +7,6 @@ import { CourseService } from '../services/course.service';
 import { LoggerService } from '../../core/services/logger.service';
 import { By } from '@angular/platform-browser';
 import { OrderByPipe } from '../../shared/pipes/order-by.pipe';
-import { FilterByPipe } from '../../shared/pipes/filter-by.pipe';
 import { CourseItemBorderDirective } from '../course-item-border.directive';
 import { GetDurationPipe } from '../../shared/pipes/get-duration.pipe';
 
@@ -17,7 +16,7 @@ describe('#CourseListComponent', () => {
 
   let courseService: CourseService;
   const courseServiceStub: Partial<CourseService> = {
-    getCourseList: () => [
+    getMockCourseList: () => [
       CourseService.getNewCourse('Name', 'Description', new Date(2019, 10, 27), 541, 1)
     ]
   };
@@ -29,16 +28,11 @@ describe('#CourseListComponent', () => {
         SearchSectionComponent,
         CourseItemComponent,
         OrderByPipe,
-        FilterByPipe,
         CourseItemBorderDirective,
         GetDurationPipe
       ],
       imports: [FormsModule],
-      providers: [
-        FilterByPipe,
-        LoggerService,
-        { provide: CourseService, useValue: courseServiceStub }
-      ]
+      providers: [LoggerService, { provide: CourseService, useValue: courseServiceStub }]
     }).compileComponents();
   }));
 
@@ -77,15 +71,8 @@ describe('#CourseListComponent', () => {
     expect(methodSpy).toHaveBeenCalled();
   });
 
-  it('should call courseService', () => {
-    const getDataSpy = spyOn(courseService, 'getCourseList');
+  it('should have courseList initialized ', () => {
     component.ngOnInit();
-    expect(getDataSpy).toHaveBeenCalled();
-    expect(component.courseList).toEqual(courseService.getCourseList());
-  });
-
-  it('should have courseList initialised ', () => {
-    component.ngOnInit();
-    expect(component.courseList).toEqual(courseService.getCourseList());
+    expect(component.courseList).toEqual(courseService.getMockCourseList());
   });
 });
