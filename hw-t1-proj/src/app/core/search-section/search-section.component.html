@@ -6,9 +6,8 @@
         type="search"
         placeholder="Search"
         aria-label="Search"
-        [(ngModel)]="searchCriteria"
+        [formControl]="searchControl"
       />
-      <button class="btn btn-outline-success my-2 my-sm-0" (click)="search()">Search</button>
     </span>
   </div>
   <button class="btn btn-outline-info my-2 my-sm-0 float-right" [routerLink]="['new']">

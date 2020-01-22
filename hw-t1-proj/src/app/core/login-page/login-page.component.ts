@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from '../services/auth.service';
 import { LoggerService } from '../services/logger.service';
 import { Router } from '@angular/router';
-import { error } from 'protractor';
 import { User, UserToken } from '../models/user';
 import { UserService } from '../services/user.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -31,7 +31,8 @@ export class LoginPageComponent {
         this.authService.authenticationToken = res.token;
         this.userService.getUserInfo(res.token).subscribe(
           (res: User) => {
-            this.authService.authenticatedUser = res;
+            this.logger.log('login - authenticatedUser -' + JSON.stringify(res));
+            this.authService.authenticatedUser = of(res);
             this.router.navigate(['/courses']);
           },
           err => {

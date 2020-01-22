@@ -7,7 +7,7 @@ const BASE_AUTH_URL = 'http://localhost:3004/auth/login';
 
 @Injectable()
 export class AuthenticationService {
-  public authenticatedUser: User;
+  public authenticatedUser: Observable<User> = new Observable<User>();
   public authenticationToken: string;
 
   constructor(private httpClient: HttpClient) {}

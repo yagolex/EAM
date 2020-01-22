@@ -95,43 +95,6 @@ export class CourseService {
     };
   }
 
-  private internalCourseList: Course[] = [
-    CourseService.getNewCourse(
-      'Video course 2. Name Tag',
-      'Learn about your other course description.',
-      new Date(2019, 10, 20),
-      602,
-      2
-    ),
-    CourseService.getNewCourse(
-      'Video course 1. Name Tag',
-      'Learn about where you can find course description.',
-      new Date(2019, 10, 10),
-      541,
-      1
-    ),
-    CourseService.getNewCourse(
-      'Video course 3. Name Tag',
-      'Learn about your third course.',
-      new Date(2030, 13, 29),
-      663,
-      3,
-      true
-    )
-  ];
-
-  public getMockCourseById(courseId: number): Course {
-    const result = this.internalCourseList.filter(item => item.id === courseId);
-    if (result) {
-      return result[0];
-    }
-    return null;
-  }
-
-  public getMockCourseList(): Course[] {
-    return this.internalCourseList;
-  }
-
   public static getNewCourse(
     title: string = '',
     description: string = '',
