@@ -3,7 +3,7 @@ import { User } from '../models/user';
 import { AuthenticationService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { LoggerService } from '../services/logger.service';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -21,15 +21,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.logger.log('HeaderComponent - currentUser - ngOnInit');
-    this.authService.authenticatedUser.subscribe(
-      (user: User) => {
-        this.currentUser = of(user);
-        this.logger.log('HeaderComponent - currentUser - success -' + JSON.stringify(user));
-      },
-      err => {
-        this.logger.log('HeaderComponent - currentUser - Error' + err);
-      }
-    );
+    this.currentUser = this.authService.subscribeOnAuthUserUpdates();
   }
 
   logOut() {

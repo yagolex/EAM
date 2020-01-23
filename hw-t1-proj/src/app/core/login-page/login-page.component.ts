@@ -4,7 +4,6 @@ import { LoggerService } from '../services/logger.service';
 import { Router } from '@angular/router';
 import { User, UserToken } from '../models/user';
 import { UserService } from '../services/user.service';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -32,7 +31,7 @@ export class LoginPageComponent {
         this.userService.getUserInfo(res.token).subscribe(
           (res: User) => {
             this.logger.log('login - authenticatedUser -' + JSON.stringify(res));
-            this.authService.authenticatedUser = of(res);
+            this.authService.authenticatedUser$.next(res); // notify all subscribers about data update
             this.router.navigate(['/courses']);
           },
           err => {

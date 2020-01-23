@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { User, UserApi, UserToken } from '../models/user';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 const BASE_AUTH_URL = 'http://localhost:3004/auth/login';
 
 @Injectable()
 export class AuthenticationService {
-  public authenticatedUser: Observable<User> = new Observable<User>();
+  public authenticatedUser$: BehaviorSubject<User> = <BehaviorSubject<User>>(
+    new BehaviorSubject(null)
+  );
   public authenticationToken: string;
 
+  subscribeOnAuthUserUpdates(): Observable<User> {
+    return this.authenticatedUser$.asObservable();
+  }
+
   constructor(private httpClient: HttpClient) {}
+
   private loginWithApi(url: string, user: UserApi): Observable<UserToken> {
     return this.httpClient.post<UserToken>(url, user);
   }
@@ -22,16 +29,18 @@ export class AuthenticationService {
   }
 
   logOut() {
-    this.authenticatedUser = null;
     this.authenticationToken = null;
+    this.authenticatedUser$.next(null);
   }
 
   isAuthenticated(): boolean {
     return (
-      this.authenticatedUser !== null &&
-      this.authenticatedUser !== undefined &&
-      this.authenticationToken !== null &&
-      this.authenticationToken !== undefined
+      this.authenticationToken !== null && this.authenticationToken !== undefined
+      // &&
+      // this.authenticatedUser$.getValue() !== null &&
+      // this.authenticatedUser$.getValue() !== undefined &&
+      // this.authenticatedUser$.getValue().fakeToken !== null &&
+      // this.authenticatedUser$.getValue().fakeToken !== this.authenticationToken
     );
   }
 }
