@@ -7,7 +7,10 @@ import { AuthenticationService } from './auth.service';
 export class ApplyTokenInterceptor implements HttpInterceptor {
   constructor(private authService: AuthenticationService) {}
   intercept(httpReq: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.authService.isAuthenticated()) {
+    if (
+      this.authService.authenticationToken != null &&
+      this.authService.authenticationToken != undefined
+    ) {
       let headers = httpReq.headers.set('Authorization', this.authService.authenticationToken);
 
       const newReq = httpReq.clone({

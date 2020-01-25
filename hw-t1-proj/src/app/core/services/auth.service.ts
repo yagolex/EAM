@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User, UserApi, UserToken } from '../models/user';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 const BASE_AUTH_URL = 'http://localhost:3004/auth/login';
 
@@ -33,14 +34,16 @@ export class AuthenticationService {
     this.authenticatedUser$.next(null);
   }
 
-  isAuthenticated(): boolean {
-    return (
-      this.authenticationToken !== null && this.authenticationToken !== undefined
-      // &&
-      // this.authenticatedUser$.getValue() !== null &&
-      // this.authenticatedUser$.getValue() !== undefined &&
-      // this.authenticatedUser$.getValue().fakeToken !== null &&
-      // this.authenticatedUser$.getValue().fakeToken !== this.authenticationToken
+  isAuthenticated(): Observable<boolean> {
+    return this.subscribeOnAuthUserUpdates().pipe(
+      map((user: User) => {
+        return (
+          user !== null &&
+          user !== undefined &&
+          user.fakeToken !== null &&
+          user.fakeToken === this.authenticationToken
+        );
+      })
     );
   }
 }
