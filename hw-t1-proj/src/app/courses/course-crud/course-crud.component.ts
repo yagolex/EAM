@@ -8,7 +8,15 @@ import { Course } from '../models/course';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseCrudComponent {
-  @Input() activeCourse: Course;
+  @Input() activeCourse: Course = {
+    title: '',
+    description: '',
+    creationDate: new Date(),
+    durationMinutes: 0,
+    authors: '',
+    id: 0,
+    topRated: false
+  };
   @Output() cancelCourseCrudEvent: EventEmitter<void> = new EventEmitter<void>();
   @Output() saveCourseCrudEvent: EventEmitter<Course> = new EventEmitter<Course>();
 

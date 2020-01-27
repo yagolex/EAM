@@ -7,7 +7,7 @@ import { filter } from 'rxjs/operators';
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.css']
 })
-export class BreadcrumbsComponent {
+export class BreadcrumbsComponent implements OnInit {
   private ROUTE_DATA_BREADCRUMB: string = 'breadcrumb';
   public breadcrumbs: IBreadcrumb[];
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
