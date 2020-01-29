@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from './services/auth.service';
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { LoggerService } from './services/logger.service';
 
 @Injectable()
@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authService.isAuthenticated().pipe(
-      map(
+      tap(
         res => {
           this.logger.log('authService - succeed with result - ' + JSON.stringify(res));
           if (!res) {

@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.logger.log('HeaderComponent - currentUser - ngOnInit');
-    this.currentUser = this.authService.subscribeOnAuthUserUpdates();
+    this.currentUser = this.authService.currentAuthenticatedUser$;
   }
 
   logOut() {

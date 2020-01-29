@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService } from './services/spinner.service';
-import { CoreModule } from '../core/core.module';
 import { LoggerService } from '../core/services/logger.service';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -14,14 +13,7 @@ import { SpinnerInterceptor } from './services/spinner.interceptor';
 
 @NgModule({
   declarations: [SpinnerComponent],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    CoreModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule
-  ],
+  imports: [AppRoutingModule, BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
   providers: [
     SpinnerService,
     LoggerService,

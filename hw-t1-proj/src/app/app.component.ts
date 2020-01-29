@@ -17,13 +17,11 @@ import {
 })
 export class AppComponent implements OnInit {
   title = 'hw-t1-proj';
-  isLoading: Observable<boolean>;
+  isLoading: Observable<boolean> = this.isLoadingService.isLoading$;
 
   constructor(private isLoadingService: SpinnerService, private router: Router) {}
 
   ngOnInit() {
-    this.isLoading = this.isLoadingService.isLoadingSubscription();
-
     this.router.events
       .pipe(
         filter(

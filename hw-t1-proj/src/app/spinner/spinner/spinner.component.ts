@@ -1,14 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-spinner',
   templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.css']
+  styleUrls: ['./spinner.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SpinnerComponent implements OnInit {
-  @Input() isLoading: Observable<boolean>;
-  constructor() {}
-
-  ngOnInit() {}
+export class SpinnerComponent {
+  @Input() isLoading: boolean;
 }

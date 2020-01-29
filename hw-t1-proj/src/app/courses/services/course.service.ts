@@ -10,8 +10,20 @@ const BASE_COURSE_URL = 'http://localhost:3004/courses';
 export class CourseService {
   constructor(private httpClient: HttpClient) {}
 
+  public static getNewCourse(
+    title: string = '',
+    description: string = '',
+    startDate: Date = new Date(),
+    durationMinutes: number = 0,
+    id: number = 0,
+    topRated: boolean = false,
+    authors: string = ''
+  ): Course {
+    return { title, description, creationDate: startDate, durationMinutes, id, topRated, authors };
+  }
+
   public getCourseList(start: number, count: number, searchCriteria: string): Observable<Course[]> {
-    let url = this.buildGetUrl(start, count, searchCriteria);
+    const url = this.buildGetUrl(start, count, searchCriteria);
     return this.getCourseListFromApi(url).pipe(
       map((items: CourseFromApi[]) => {
         return items.map((item: CourseFromApi) => this.mapApi2AppItem(item));
@@ -20,8 +32,8 @@ export class CourseService {
   }
 
   public addCourse(newAppCourseItem: Course): Observable<Course> {
-    let newApiCourseItem = this.mapApp2ApiItem(newAppCourseItem);
-    let url = BASE_COURSE_URL;
+    const newApiCourseItem = this.mapApp2ApiItem(newAppCourseItem);
+    const url = BASE_COURSE_URL;
     return this.addNewCourseWithApi(url, newApiCourseItem).pipe(
       map((item: CourseFromApi) => {
         return this.mapApi2AppItem(item);
@@ -30,7 +42,7 @@ export class CourseService {
   }
 
   public getCourseById(courseId: number): Observable<Course> {
-    let url = `${BASE_COURSE_URL}/${courseId}`;
+    const url = `${BASE_COURSE_URL}/${courseId}`;
     return this.getCourseFromApi(url).pipe(
       map((item: CourseFromApi) => {
         return this.mapApi2AppItem(item);
@@ -43,7 +55,7 @@ export class CourseService {
   }
 
   public deleteCourse(courseId: number): Observable<void> {
-    let url = `${BASE_COURSE_URL}/${courseId}`;
+    const url = `${BASE_COURSE_URL}/${courseId}`;
     return this.deleteCourseFromApi(url);
   }
 
@@ -93,17 +105,5 @@ export class CourseService {
       isTopRated: item.topRated,
       authors: item.authors
     };
-  }
-
-  public static getNewCourse(
-    title: string = '',
-    description: string = '',
-    startDate: Date = new Date(),
-    durationMinutes: number = 0,
-    id: number = 0,
-    topRated: boolean = false,
-    authors: string = ''
-  ): Course {
-    return { title, description, creationDate: startDate, durationMinutes, id, topRated, authors };
   }
 }

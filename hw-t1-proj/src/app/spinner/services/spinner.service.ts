@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { LoggerService } from 'src/app/core/services/logger.service';
 
 @Injectable({
@@ -7,11 +7,10 @@ import { LoggerService } from 'src/app/core/services/logger.service';
 })
 export class SpinnerService {
   constructor(private logger: LoggerService) {}
-  isLoading = new Subject<boolean>();
+  private isLoading = new BehaviorSubject<boolean>(false);
 
-  isLoadingSubscription(): Observable<boolean> {
-    return this.isLoading.asObservable();
-  }
+  isLoading$ = this.isLoading.asObservable();
+
   show() {
     this.logger.log('SpinnerService - show');
     this.isLoading.next(true);
