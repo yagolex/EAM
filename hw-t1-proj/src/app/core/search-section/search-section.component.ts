@@ -1,5 +1,7 @@
-import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Output, EventEmitter, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { LoggerService } from '../services/logger.service';
+import { FormControl } from '@angular/forms';
+import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-section',
@@ -7,15 +9,25 @@ import { LoggerService } from '../services/logger.service';
   styleUrls: ['./search-section.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchSectionComponent {
+export class SearchSectionComponent implements OnInit {
   @Output() searchCourseItemEvent: EventEmitter<string> = new EventEmitter<string>();
   constructor(private logger: LoggerService) {}
-  public searchCriteria: string = '';
+  private searchControl: FormControl;
+  private debounce: number = 400;
 
-  public search() {
-    this.logger.log(
-      `SearchSectionComponent - searchCourseItemEvent - searchCriteria - ${this.searchCriteria}`
-    );
-    this.searchCourseItemEvent.emit(this.searchCriteria);
+  ngOnInit() {
+    this.searchControl = new FormControl('');
+    this.searchControl.valueChanges
+      .pipe(
+        debounceTime(this.debounce),
+        distinctUntilChanged(),
+        filter((scValue: string) => scValue.length >= 3 || scValue.length === 0)
+      )
+      .subscribe(searchCriteriaQuery => {
+        this.logger.log(
+          `SearchSectionComponent - searchControl - valueChanges - ${searchCriteriaQuery}`
+        );
+        this.searchCourseItemEvent.emit(searchCriteriaQuery);
+      });
   }
 }

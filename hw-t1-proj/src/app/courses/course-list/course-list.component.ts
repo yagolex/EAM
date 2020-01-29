@@ -4,8 +4,8 @@ import { LoggerService } from '../../core/services/logger.service';
 import { Course } from '../models/course';
 import { Router } from '@angular/router';
 
-const default_start: number = 0;
-const default_count: number = 10;
+const DEFAULT_START: number = 0;
+const DEFAULT_COUNT: number = 10;
 
 @Component({
   selector: 'app-course-list',
@@ -14,7 +14,7 @@ const default_count: number = 10;
 })
 export class CourseListComponent implements OnInit {
   public courseList: Course[];
-  private start: number = default_start;
+  private start: number = DEFAULT_START;
   private searchCriteria: string = null;
 
   constructor(
@@ -44,19 +44,19 @@ export class CourseListComponent implements OnInit {
   }
 
   public loadMoreCourseItems(): void {
-    this.start = this.start + default_count;
+    this.start = this.start + DEFAULT_COUNT;
     this.loadCourses(true);
   }
 
   public filterCourseItems(searchCriteria: string): void {
-    this.start = default_start;
+    this.start = DEFAULT_START;
     this.searchCriteria = searchCriteria;
     this.loadCourses();
   }
 
   private loadCourses(append: boolean = false) {
     this.courseService
-      .getCourseList(this.start, default_count, this.searchCriteria)
+      .getCourseList(this.start, DEFAULT_COUNT, this.searchCriteria)
       .subscribe((items: Course[]) => {
         append ? (this.courseList = this.courseList.concat(items)) : (this.courseList = items);
       });

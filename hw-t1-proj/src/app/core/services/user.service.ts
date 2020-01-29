@@ -16,8 +16,8 @@ export class UserService {
   }
 
   getUserInfo(token: string): Observable<User> {
-    let url = `${USER_INFO_URL}`;
-    let user: UserToken = { token: token };
+    const url = `${USER_INFO_URL}`;
+    const user: UserToken = { token };
     return this.getUserFromApiByToken(url, user).pipe(
       map((item: UserApi) => {
         this.logger.log(JSON.stringify(item));

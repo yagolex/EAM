@@ -10,7 +10,7 @@ import { CourseService } from '../courses/services/course.service';
 import { DatePipe } from '@angular/common';
 import { UserService } from './services/user.service';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoggerService } from './services/logger.service';
 import { CourseItemBorderDirective } from '../courses/course-item-border.directive';
 import { GetDurationPipe } from '../shared/pipes/get-duration.pipe';
@@ -42,7 +42,14 @@ import { ApplyTokenInterceptor } from './services/apply-token.interceptor';
     GetFullNamePipe,
     PageNotFoundComponent
   ],
-  imports: [AppRoutingModule, CommonModule, FormsModule, SharedModule, CoursesModule],
+  imports: [
+    AppRoutingModule,
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    CoursesModule,
+    ReactiveFormsModule
+  ],
   providers: [
     CourseService,
     DatePipe,

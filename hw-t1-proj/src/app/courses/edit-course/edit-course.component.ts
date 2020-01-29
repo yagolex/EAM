@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from '../services/course.service';
 import { LoggerService } from 'src/app/core/services/logger.service';
 
+const DECIMAL_RADIX = 10;
+
 @Component({
   selector: 'app-edit-course',
   templateUrl: './edit-course.component.html',
@@ -23,8 +25,8 @@ export class EditCourseComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(routeParams => {
-      let courseId = routeParams.id;
-      this.courseService.getCourseById(parseInt(courseId)).subscribe(
+      const courseId = routeParams.id;
+      this.courseService.getCourseById(parseInt(courseId, DECIMAL_RADIX)).subscribe(
         (res: Course) => {
           this.selectedCourse = res;
           this.selectedCourseBackup = JSON.stringify(this.selectedCourse);

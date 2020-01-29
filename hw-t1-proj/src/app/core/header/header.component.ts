@@ -3,6 +3,7 @@ import { User } from '../models/user';
 import { AuthenticationService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { LoggerService } from '../services/logger.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import { LoggerService } from '../services/logger.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  currentUser: User;
+  currentUser: Observable<User>;
 
   constructor(
     private authService: AuthenticationService,
@@ -19,10 +20,8 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // todo: does not work, need to fix it  somehow to let user name appear in header
-    this.currentUser = this.authService.authenticatedUser;
-    // todo: remove below after testing (it works)
-    //this.currentUser = { firstName: 'Alex', lastName: 'Graboski', login: 'aa', password: '' };
+    this.logger.log('HeaderComponent - currentUser - ngOnInit');
+    this.currentUser = this.authService.currentAuthenticatedUser$;
   }
 
   logOut() {
