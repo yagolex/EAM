@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { SpinnerService } from './spinner/services/spinner.service';
@@ -9,20 +9,22 @@ import {
   NavigationCancel,
   NavigationError
 } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'hw-t1-proj';
+  private sub: Subscription;
   isLoading: Observable<boolean> = this.isLoadingService.isLoading$;
 
   constructor(private isLoadingService: SpinnerService, private router: Router) {}
 
   ngOnInit() {
-    this.router.events
+    this.sub = this.router.events
       .pipe(
         filter(
           event =>
@@ -42,5 +44,10 @@ export class AppComponent implements OnInit {
         // Else navigation has ended, so `hide()` a loading indicator
         this.isLoadingService.hide();
       });
+  }
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 }

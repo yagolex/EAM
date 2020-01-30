@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CourseService } from '../services/course.service';
 import { LoggerService } from '../../core/services/logger.service';
 import { Course } from '../models/course';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 const DEFAULT_START: number = 0;
 const DEFAULT_COUNT: number = 10;
@@ -12,10 +13,12 @@ const DEFAULT_COUNT: number = 10;
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.css']
 })
-export class CourseListComponent implements OnInit {
+export class CourseListComponent implements OnInit, OnDestroy {
   public courseList: Course[];
   private start: number = DEFAULT_START;
   private searchCriteria: string = null;
+  private loadSub: Subscription;
+  private deleteSub: Subscription;
 
   constructor(
     private courseService: CourseService,
@@ -25,7 +28,7 @@ export class CourseListComponent implements OnInit {
 
   public deleteCourseItem(id: number): void {
     if (confirm('are you sure to delete course with id = ' + id)) {
-      this.courseService.deleteCourse(id).subscribe(
+      this.deleteSub = this.courseService.deleteCourse(id).subscribe(
         res => {
           this.logger.log('delete successful for course with id = ' + id);
           this.loadCourses();
@@ -55,7 +58,7 @@ export class CourseListComponent implements OnInit {
   }
 
   private loadCourses(append: boolean = false) {
-    this.courseService
+    this.loadSub = this.courseService
       .getCourseList(this.start, DEFAULT_COUNT, this.searchCriteria)
       .subscribe((items: Course[]) => {
         append ? (this.courseList = this.courseList.concat(items)) : (this.courseList = items);
@@ -68,5 +71,14 @@ export class CourseListComponent implements OnInit {
 
   public hasItems(): boolean {
     return this.courseList != null && this.courseList.length > 0;
+  }
+
+  ngOnDestroy() {
+    if (this.loadSub) {
+      this.loadSub.unsubscribe();
+    }
+    if (this.deleteSub) {
+      this.deleteSub.unsubscribe();
+    }
   }
 }

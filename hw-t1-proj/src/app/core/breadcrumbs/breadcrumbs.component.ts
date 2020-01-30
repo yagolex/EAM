@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd, Params, PRIMARY_OUTLET } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.css']
 })
-export class BreadcrumbsComponent implements OnInit {
+export class BreadcrumbsComponent implements OnInit, OnDestroy {
   private ROUTE_DATA_BREADCRUMB: string = 'breadcrumb';
+  private sub: Subscription;
   public breadcrumbs: IBreadcrumb[];
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     this.breadcrumbs = [];
@@ -16,11 +18,13 @@ export class BreadcrumbsComponent implements OnInit {
 
   ngOnInit() {
     // subscribe to the NavigationEnd event
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
-      // set breadcrumbs
-      const root: ActivatedRoute = this.activatedRoute.root;
-      this.breadcrumbs = this.getBreadcrumbs(root);
-    });
+    this.sub = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(event => {
+        // set breadcrumbs
+        const root: ActivatedRoute = this.activatedRoute.root;
+        this.breadcrumbs = this.getBreadcrumbs(root);
+      });
   }
 
   private getBreadcrumbs(
@@ -64,6 +68,11 @@ export class BreadcrumbsComponent implements OnInit {
 
       // recursive
       return this.getBreadcrumbs(child, url, breadcrumbs);
+    }
+  }
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
     }
   }
 }
