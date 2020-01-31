@@ -1,7 +1,15 @@
-import { Component, Output, EventEmitter, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+  OnInit,
+  OnDestroy
+} from '@angular/core';
 import { LoggerService } from '../services/logger.service';
 import { FormControl } from '@angular/forms';
 import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search-section',
@@ -9,15 +17,16 @@ import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
   styleUrls: ['./search-section.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchSectionComponent implements OnInit {
+export class SearchSectionComponent implements OnInit, OnDestroy {
   @Output() searchCourseItemEvent: EventEmitter<string> = new EventEmitter<string>();
   constructor(private logger: LoggerService) {}
   private searchControl: FormControl;
   private debounce: number = 400;
+  private sub: Subscription;
 
   ngOnInit() {
     this.searchControl = new FormControl('');
-    this.searchControl.valueChanges
+    this.sub = this.searchControl.valueChanges
       .pipe(
         debounceTime(this.debounce),
         distinctUntilChanged(),
@@ -29,5 +38,11 @@ export class SearchSectionComponent implements OnInit {
         );
         this.searchCourseItemEvent.emit(searchCriteriaQuery);
       });
+  }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 }
