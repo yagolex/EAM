@@ -3,7 +3,13 @@ import { CourseService } from '../services/course.service';
 import { LoggerService } from '../../core/services/logger.service';
 import { Course } from '../models/course';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable, of } from 'rxjs';
+import { RootState } from 'src/app/store/root-state';
+import { Store, select } from '@ngrx/store';
+import { LoadCoursesAction } from 'src/app/store/courses-store/courses-actions';
+import { selectCourseList } from 'src/app/store/courses-store/courses-selector';
+import { switchMap, map } from 'rxjs/operators';
+import { CoursesState } from 'src/app/store/courses-store/courses-state';
 
 const DEFAULT_START: number = 0;
 const DEFAULT_COUNT: number = 10;
@@ -20,10 +26,13 @@ export class CourseListComponent implements OnInit, OnDestroy {
   private loadSub: Subscription;
   private deleteSub: Subscription;
 
+  public courses$: Observable<Course[]> = this.store.pipe(select(selectCourseList));
+
   constructor(
     private courseService: CourseService,
     private logger: LoggerService,
-    private router: Router
+    private router: Router,
+    private store: Store<RootState>
   ) {}
 
   public deleteCourseItem(id: number): void {
@@ -67,6 +76,12 @@ export class CourseListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadCourses();
+    this.store.dispatch(new LoadCoursesAction());
+
+    // Yahoooo!! i am getting courses from Store!!
+    this.courses$.subscribe(coursesList => {
+      this.logger.log(JSON.stringify(coursesList));
+    });
   }
 
   public hasItems(): boolean {
