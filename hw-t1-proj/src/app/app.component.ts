@@ -40,7 +40,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isLoadingService.show();
           return;
         }
-
         // Else navigation has ended, so `hide()` a loading indicator
         this.isLoadingService.hide();
       });

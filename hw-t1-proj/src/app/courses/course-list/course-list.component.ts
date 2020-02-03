@@ -79,9 +79,9 @@ export class CourseListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new LoadCoursesAction());
 
     // Yahoooo!! i am getting courses from Store!!
-    this.courses$.subscribe(coursesList => {
-      this.logger.log(JSON.stringify(coursesList));
-    });
+    // this.courses$.subscribe(coursesList => {
+    //   this.logger.log(JSON.stringify(coursesList));
+    // });
   }
 
   public hasItems(): boolean {

@@ -13,7 +13,6 @@ import { UserService } from './services/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoggerService } from './services/logger.service';
 import { CourseItemBorderDirective } from '../courses/course-item-border.directive';
-import { GetDurationPipe } from '../shared/pipes/get-duration.pipe';
 import { OrderByPipe } from '../shared/pipes/order-by.pipe';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthenticationService } from './services/auth.service';
@@ -36,7 +35,6 @@ import { ApplyTokenInterceptor } from './services/apply-token.interceptor';
     BreadcrumbsComponent,
     SearchSectionComponent,
     CourseItemBorderDirective,
-    GetDurationPipe,
     OrderByPipe,
     LoginPageComponent,
     GetFullNamePipe,

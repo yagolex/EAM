@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CourseCrudComponent } from './course-crud/course-crud.component';
 import { SharedModule } from '../shared/shared.module';
 import { EditCourseComponent } from './edit-course/edit-course.component';
@@ -10,7 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [CourseCrudComponent, EditCourseComponent, AddCourseComponent],
-  imports: [AppRoutingModule, CommonModule, FormsModule, SharedModule, HttpClientModule],
+  imports: [
+    AppRoutingModule,
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    HttpClientModule,
+    ReactiveFormsModule
+  ],
   providers: [],
   exports: [CourseCrudComponent, EditCourseComponent]
 })

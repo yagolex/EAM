@@ -28,6 +28,8 @@ export class EditCourseComponent implements OnInit, OnDestroy {
       const courseId = routeParams.id;
       this.courseService.getCourseById(parseInt(courseId, DECIMAL_RADIX)).subscribe(
         (res: Course) => {
+          this.logger.log('edit control, - selected Course');
+          this.logger.log(JSON.stringify(res));
           this.selectedCourse = res;
           this.selectedCourseBackup = JSON.stringify(this.selectedCourse);
         },
