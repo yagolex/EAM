@@ -1,62 +1,63 @@
-<label for="courseTitle">Title</label>
-<div class="input-group mb-3">
-  <input
-    type="text"
-    class="form-control"
-    id="courseTitle"
-    aria-describedby="basic-addon3"
-    [(ngModel)]="activeCourse.title"
-    placeholder="Course Title"
-  />
-</div>
+<form novalidate [formGroup]="crudForm" (ngSubmit)="save()">
+  <label for="courseTitle">Title</label>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      id="courseTitle"
+      aria-describedby="basic-addon3"
+      formControlName="courseTitle"
+      placeholder="Course Title"
+    />
+  </div>
 
-<label for="courseDescription">Description</label>
-<div class="input-group mb-3">
-  <textarea
-    class="form-control"
-    aria-label="With textarea"
-    id="courseDescription"
-    [(ngModel)]="activeCourse.description"
-  ></textarea>
-</div>
+  <label for="courseDescription">Description</label>
+  <div class="input-group mb-3">
+    <textarea
+      class="form-control"
+      aria-label="With textarea"
+      id="courseDescription"
+      formControlName="courseDescription"
+    ></textarea>
+  </div>
 
-<label for="courseDate">Date</label>
-<div class="input-group mb-3">
-  <input
-    type="text"
-    class="form-control"
-    id="courseDate"
-    aria-describedby="basic-addon3"
-    [(ngModel)]="activeCourse.creationDate"
-    placeholder="mm.DD.yyyy"
-  />
-</div>
+  <label for="courseDate">Date</label>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      id="courseDate"
+      aria-describedby="basic-addon3"
+      formControlName="courseDate"
+      placeholder="dd/mm/yyyy"
+    />
+  </div>
 
-<label for="courseDuration">Duration</label>
-<div class="input-group mb-3">
-  <input
-    type="text"
-    class="form-control"
-    id="courseDuration"
-    aria-describedby="basic-addon3"
-    [(ngModel)]="activeCourse.durationMinutes"
-    placeholder="Duration in Minutes"
-  />
-</div>
+  <label for="courseDuration">Duration</label>
+  <div class="input-group mb-3">
+    <input
+      type="number"
+      class="form-control"
+      id="courseDuration"
+      aria-describedby="basic-addon3"
+      formControlName="courseDuration"
+      placeholder="Duration in Minutes"
+    />&nbsp;
+    <input type="text" formControlName="courseDurationHours" id="courseDurationHours" />
+  </div>
 
-<label for="courseAuthors">Authors</label>
-<div class="input-group mb-3">
-  <input
-    type="text"
-    class="form-control"
-    id="courseAuthors"
-    aria-describedby="basic-addon3"
-    [(ngModel)]="activeCourse.authors"
-    placeholder="Authors List"
-  />
-</div>
-<br />
-<button type="button" class="btn btn-outline-success" (click)="save()">Save</button>&nbsp;
-<button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
-
-<!-- https://getbootstrap.com/docs/4.0/components/input-group/#basic-example -->
+  <label for="courseAuthors">Authors</label>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      id="courseAuthors"
+      aria-describedby="basic-addon3"
+      formControlName="courseAuthors"
+      placeholder="Authors List"
+    />
+  </div>
+  <br />
+  <button type="button" class="btn btn-outline-success" (click)="save()">Save</button>&nbsp;
+  <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+</form>

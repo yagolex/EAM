@@ -7,10 +7,18 @@ import { CoreModule } from './core/core.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
 import { FormsModule } from '@angular/forms';
+import { RootStoreModule } from './store/root-store.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [AppRoutingModule, BrowserModule, CoreModule, FormsModule, SpinnerModule],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    CoreModule,
+    FormsModule,
+    SpinnerModule,
+    RootStoreModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
